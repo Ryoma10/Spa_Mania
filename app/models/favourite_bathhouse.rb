@@ -1,0 +1,2 @@
+class FavouriteBathhouse < ApplicationRecord
+end
