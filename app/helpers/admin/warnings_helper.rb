@@ -1,0 +1,2 @@
+module Admin::WarningsHelper
+end
