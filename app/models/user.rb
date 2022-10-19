@@ -27,4 +27,8 @@ class User < ApplicationRecord
     passive_relationships.find_by(following_id: user.id).present?
   end
 
+  # パスワードのバリデーション
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password, format: { with: VALID_PASSWORD_REGEX }
+
 end

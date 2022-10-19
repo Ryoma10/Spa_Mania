@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-    # 顧客用
+  # 顧客用
   # URL //sign_in ...
   devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  post 'users/guest_sign_in', to: 'public/users#guest_sign_in'
 
   # 管理者用
   # URL /admin/sign_in ...
