@@ -56,11 +56,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'homes#top'
+    root 'homes#index'
 
     resources :categories, only: [:index]
 
-    resources :features, only: [:create, :destroy]
+    resources :features, only: [:index, :create, :destroy]
 
     resources :users, only: [:show, :edit, :update, :destroy] do
       member do

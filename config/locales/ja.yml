@@ -1,4 +1,11 @@
 ja:
+  enums:
+    feature:
+      category:
+        bath_facilities: "お風呂設備"
+        sauna: "サウナ"
+        other: "その他"
+        building_facilities: "館内設備"
   activerecord:
     errors:
       messages:
