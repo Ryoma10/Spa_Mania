@@ -21,4 +21,19 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-8 px-0 mt-3">
+      <h2>カテゴリ・特徴一覧</h2>
+      <h3>■浴場情報</h3>
+      <%= Feature.categories_i18n[:bath_facilities] %><br>
+      <table>
+        <% @bath_facilities.each do |feature| %>
+          <tr>
+            <tb><%= feature.name %>&emsp;</tb>
+            <tb><%= link_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm mr-5" %></tb>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
