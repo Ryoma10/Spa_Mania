@@ -22,18 +22,82 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8 px-0 mt-3">
+    <div class="col-9 px-0 mt-3">
       <h2>カテゴリ・特徴一覧</h2>
       <h3>■浴場情報</h3>
-      <%= Feature.categories_i18n[:bath_facilities] %><br>
-      <table>
-        <% @bath_facilities.each do |feature| %>
-          <tr>
-            <tb><%= feature.name %>&emsp;</tb>
-            <tb><%= link_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm mr-5" %></tb>
-          </tr>
+      <div class="md-2">
+        <%= Feature.categories_i18n[:bath_facilities] %><br>
+        <% @bath_facilities.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+              <li class="col-3 d-flex justify-content-between">
+                <span class="fontsize-14"><%= feature.name %>&emsp;</span>
+                <%= button_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm" %>
+              </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
         <% end %>
-      </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 px-0 mt-3">
+      <div class="md-2">
+        <%= Feature.categories_i18n[:sauna] %><br>
+        <% @sauna.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+              <li class="col-3 d-flex justify-content-between">
+                <span class="fontsize-14"><%= feature.name %>&emsp;</span>
+                <%= button_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm" %>
+              </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 px-0 mt-3">
+      <h3>■施設情報</h3>
+      <div class="md-2">
+        <%= Feature.categories_i18n[:other] %><br>
+        <% @other.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+              <li class="col-3 d-flex justify-content-between">
+                <span class="fontsize-14"><%= feature.name %>&emsp;</span>
+                <%= button_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm" %>
+              </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 px-0 mt-3">
+      <div class="md-2">
+        <%= Feature.categories_i18n[:building_facilities] %><br>
+        <% @building_facilities.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+              <li class="col-3 d-flex justify-content-between">
+                <span class="fontsize-14"><%= feature.name %>&emsp;</span>
+                <%= button_to "削除", admin_feature_path(feature.id), method: :delete, data: { confirm: '削除を実行しますか？'}, class: "btn btn-danger btn-sm" %>
+              </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

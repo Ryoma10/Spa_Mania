@@ -1,2 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.features-list {
+  list-style: none;
+}
+
+.features-list li {
+  width: 25%;
+}
+
+.fontsize-14 {
+  font-size: 14px;
+}

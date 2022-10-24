@@ -1,2 +1,20 @@
-<h1>Public::Bathhouses#confirm</h1>
-<p>Find me in app/views/public/bathhouses/confirm.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-11 px-0 mt-3  text-center">
+      <h4>
+        施設登録のご協力誠にありがとうございます。<br>
+        <br>
+        登録前に施設名で検索していただき、<br>
+        既に登録がないことをご確認いただいたうえで、ご登録いただくようお願いいたします。<br>
+        <br>
+        新しく登録していただいた施設が既に登録済みであった場合、<br>
+        運営より削除させていただいております。<br>
+        <br>
+        お手数をおかけしてしまい申し訳ございませんが、<br>
+        ご理解、ご協力のほど、何卒よろしくお願いいたします。
+      </h4>
+      <%= link_to "施設登録に進む", new_bathhouse_path, class: "btn btn-success mt-5" %>
+    </div>
+  </div>
+</div>
