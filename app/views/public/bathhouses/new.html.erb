@@ -1,2 +1,25 @@
-<h1>Public::Bathhouses#new</h1>
-<p>Find me in app/views/public/bathhouses/new.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>新規施設登録</h2>
+      <p class="">
+        施設登録にご協力いただき誠にありがとうございます。<br>
+        登録内容は登録後に本サイト会員であれば誰でも編集ができるようになります。<br>
+        わからない箇所は空欄でも登録可能となりますので、<br>
+        入力可能な箇所のみご入力いただきますよう、よろしくお願いいたします。<br>
+      </p>
+    </div>
+  </div>
+  <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
+    <li class="bathhouse-border">施設情報入力</li>
+    <li>→</li>
+    <li>画像登録</li>
+    <li>→</li>
+    <li>登録確認</li>
+  </ul>
+  <div class="row">
+    <h3 class="font-weight-bold">■基本情報</h3>
+    <%= form_with model: @order, url: confirm_orders_path, method: :get do |f| %>
+  </div>
+</div>
