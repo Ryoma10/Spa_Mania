@@ -3,6 +3,11 @@ class Public::BathhousesController < ApplicationController
   end
 
   def new
+    @bathhouse = Bathhouse.new
+    @bath_facilities = Feature.where(category: 'bath_facilities')
+    @sauna = Feature.where(category: 'sauna')
+    @other = Feature.where(category: 'other')
+    @building_facilities = Feature.where(category: 'building_facilities')
   end
 
   def image
