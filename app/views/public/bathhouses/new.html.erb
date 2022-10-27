@@ -67,22 +67,40 @@
         <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
         <div class="row">
-          <div class="col-9 px-0 mt-3">
-            <div class="md-2">
-              <%= Feature.categories_i18n[:sauna] %><br>
-              <% @bath_facilities.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <%= f.collection_check_boxes :features, feature, :id, :name %>
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
+          <div class="col-10 px-0 mt-3 md-2 ml-4">
+            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+            <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+              <% @index = @index+1 %>
+              <% if @index % 4 == 1 %>
+                <ul class="row features-list">
               <% end %>
-            </div>
+                  <li class="col-3 d-flex">
+                    <%= bath_facilitie.check_box %>
+                    <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
+                  </li>
+              <% if @index % 4 == 0 %>
+                </ul>
+              <% end %>
+            <% end %>
+            <% @index = 0 %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 ml-4">
+            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+            <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+              <% @index=@index+1 %>
+              <% if @index % 4 == 1 %>
+                <ul class="row features-list">
+              <% end %>
+                  <li class="col-3 d-flex">
+                    <%= sauna.check_box %>
+                    <sapn class="ml-1"><%= sauna.text %></sapn>
+                  </li>
+              <% if @index % 4 == 0 %>
+                </ul>
+              <% end %>
+            <% end %>
           </div>
         </div>
       <% end %>

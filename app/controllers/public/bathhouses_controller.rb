@@ -8,6 +8,7 @@ class Public::BathhousesController < ApplicationController
     @sauna = Feature.where(category: 'sauna')
     @other = Feature.where(category: 'other')
     @building_facilities = Feature.where(category: 'building_facilities')
+    @index = 0
   end
 
   def image
