@@ -1,2 +1,35 @@
-<h1>Public::Bathhouses#image</h1>
-<p>Find me in app/views/public/bathhouses/image.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>施設画像登録</h2>
+      <p class="">
+        アップロードする画像はご自身で撮影した写真か、<br>
+        使用許可をいただいている画像のみでお願いします。<br>
+        また、プライバシー保護の観点から、<br>
+        他者が写っていない画像のご使用をお願いいたします。<br>
+        不適切な画像をアップロードした場合、削除する場合がございます。<br>
+      </p>
+    </div>
+  </div>
+    <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
+    <li>施設情報入力</li>
+    <li>→</li>
+    <li class="bathhouse-border">画像登録</li>
+    <li>→</li>
+    <li>登録確認</li>
+  </ul>
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h3 class="font-weight-bold mb-3">■画像登録</h3>
+      <%= form_with model: @bathhouse, url: image_bathhouses_path, method: :get do |f| %>
+      <div class="form-group">
+        <label class="text-secondary">画像</label><br>
+        <%= f.file_field :image %>
+      </div>
+
+    <div id="new-image"></div>
+    <% end %>
+
+
+</div>

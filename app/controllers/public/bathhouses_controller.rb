@@ -12,6 +12,7 @@ class Public::BathhousesController < ApplicationController
   end
 
   def image
+    @bathhouse = Bathhouse.new
   end
 
   def create_confirm
