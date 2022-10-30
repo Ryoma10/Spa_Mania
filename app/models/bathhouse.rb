@@ -1,8 +1,8 @@
 class Bathhouse < ApplicationRecord
   has_many :reviews,              dependent: :destroy
-  has_many :categories,           dependent: :destroy
+  has_many :genders,              dependent: :destroy
   has_many :favourite_bathhouses, dependent: :destroy
-  has_many :features, through: :categories, dependent: :destroy
+
 
   belongs_to :user
   belongs_to :prefecture

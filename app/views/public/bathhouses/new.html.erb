@@ -66,83 +66,128 @@
         </div>
         <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
-        <div class="row">
-          <div class="col-10 px-0 mt-1 md-2 ml-4">
-            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-            <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
-              <% @index = @index+1 %>
-              <% if @index % 4 == 1 %>
-                <ul class="row features-list">
+        <%= f.fields_for 'gender_man_attributes', Gender.new do |m| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <%= m.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= bath_facilitie.check_box %>
+                      <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
               <% end %>
-                  <li class="col-3 d-flex">
-                    <%= bath_facilitie.check_box %>
-                    <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
-                  </li>
-              <% if @index % 4 == 0 %>
-                </ul>
-              <% end %>
-            <% end %>
-            <% @index = 0 %>
+              <% @index = 0 %>
+            </div>
           </div>
-        </div>
-        <div class="row">
+          <div class="row">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <%= m.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= sauna.check_box %>
+                      <sapn class="ml-1"><%= sauna.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
+        <%= f.fields_for 'gender_woman_attributes', Gender.new do |w| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <%= w.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= bath_facilitie.check_box %>
+                      <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row">
           <div class="col-10 px-0 mt-3 md-2 ml-4">
             <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-            <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
-              <% @index=@index+1 %>
-              <% if @index % 4 == 1 %>
-                <ul class="row features-list">
+              <%= w.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= sauna.check_box %>
+                      <sapn class="ml-1"><%= sauna.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
               <% end %>
-                  <li class="col-3 d-flex">
-                    <%= sauna.check_box %>
-                    <sapn class="ml-1"><%= sauna.text %></sapn>
-                  </li>
-              <% if @index % 4 == 0 %>
-                </ul>
-              <% end %>
-            <% end %>
-            <% @index = 0 %>
+              <% @index = 0 %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
-        <div class="row">
-          <div class="col-10 px-0 mt-1 md-2 ml-4">
-            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-            <%= f.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
-              <% @index = @index+1 %>
-              <% if @index % 4 == 1 %>
-                <ul class="row features-list">
+        <%= f.fields_for 'gender_be_common_attributes', Gender.new do |c| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= other.check_box %>
+                      <sapn class="ml-1"><%= other.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
               <% end %>
-                  <li class="col-3 d-flex">
-                    <%= other.check_box %>
-                    <sapn class="ml-1"><%= other.text %></sapn>
-                  </li>
-              <% if @index % 4 == 0 %>
-                </ul>
-              <% end %>
-            <% end %>
-            <% @index = 0 %>
+              <% @index = 0 %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-10 px-0 mt-3 md-2 ml-4">
-            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-            <%= f.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
-              <% @index=@index+1 %>
-              <% if @index % 4 == 1 %>
-                <ul class="row features-list">
+          <div class="row">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= building_facilities.check_box %>
+                      <sapn class="ml-1"><%= building_facilities.text %></sapn>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
               <% end %>
-                  <li class="col-3 d-flex">
-                    <%= building_facilities.check_box %>
-                    <sapn class="ml-1"><%= building_facilities.text %></sapn>
-                  </li>
-              <% if @index % 4 == 0 %>
-                </ul>
-              <% end %>
-            <% end %>
-            <% @index = 0 %>
+              <% @index = 0 %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <div class="row">
           <div class="col-10 px-0 mt-3 md-2 ml-4">
             <div class="d-flex">
@@ -152,7 +197,11 @@
             <%= f.text_area :special_note, placeholder: "例：フェイスタオル、バスタオルはフロントで何度でも交換可能　浴室にドリンク持込可", class: "form-control mb-3" %>
           </div>
         </div>
-        <%= f.submit '画像登録へ進む' ,class: 'btn btn-success mx-auto'%>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 mx-auto">
+            <%= f.submit '画像登録へ進む' ,class: 'btn btn-success' %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
