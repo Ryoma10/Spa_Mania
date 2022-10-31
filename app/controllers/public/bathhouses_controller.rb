@@ -13,17 +13,18 @@ class Public::BathhousesController < ApplicationController
 
   def image
     @bathhouse = Bathhouse.new(bathhouse_params)
-    @gender_man = @bathhouse.genders.new(bathhouse_params[:gender_man_attributes])
-    @gender_man.sex = 'man'
-    @gender_man.fetures.new(bathhouse_params[:gender_man_attributes])
+    #@gender_man = Gender.new()
+    #@gender_man.sex = 'man'
+    #byebug
+    @gender_man_fetures = Feature.find(params[:bathhouse][:gender_man_attributes][:feature_ids].compact_blank)
 
-    @gender_woman = @bathhouse.genders.new(bathhouse_params[:gender_woman_attributes])
-    @gender_woman.sex = 'woman'
-    @gender_woman.fetures.new(bathhouse_params[:gender_woman_attributes])
+    #@gender_woman = @bathhouse.genders.new(bathhouse_params[:gender_woman_attributes])
+    #@gender_woman.sex = 'woman'
+    @gender_woman_features = Feature.find(params[:bathhouse][:gender_woman_attributes][:feature_ids].compact_blank)
 
-    @gender_be_common = @bathhouse.genders.new(bathhouse_params[:gender_be_common_attributes])
-    @gender_be_common.sex = 'be_common'
-    @gender_be_common.fetures.new(bathhouse_params[:gender_be_common_attributes])
+    #@gender_be_common = @bathhouse.genders.new(bathhouse_params[:gender_be_common_attributes])
+    # @gender_be_common.sex = 'be_common'
+    @gender_be_common_fetures = Feature.find(params[:bathhouse][:gender_be_common_attributes][:feature_ids].compact_blank)
   end
 
   def create_confirm
@@ -78,9 +79,9 @@ class Public::BathhousesController < ApplicationController
       :minimum_fee,
       :fee_detail,
       :special_note,
-      gender_man_attributes: [:feature_ids],
-      gender_woman_attributes: [:feature_ids],
-      gender_be_common_attributes: [:feature_ids]
+#      gender_man_attributes: [:feature_ids],
+#      gender_woman_attributes: [:feature_ids],
+#      gender_be_common_attributes: [:feature_ids]
       )
   end
 

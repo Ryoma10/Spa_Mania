@@ -7,5 +7,9 @@ class Bathhouse < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture
 
+  attribute :gender_man_attributes, type: Array
+  attribute :gender_woman_attributes, type: Array
+  attribute :gender_be_common_attributes, type: Array
+
   has_one_attached :bathhouse_image
 end

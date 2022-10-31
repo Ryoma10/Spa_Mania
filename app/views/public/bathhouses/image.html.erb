@@ -32,15 +32,19 @@
         <div id="new-image"></div>
       <% end %>
     </div>
-    <div class="col-4 px-0 my-3">
-      <%= form_with model: @bathhouse, url: create_confirm_bathhouses_path, method: :get do |f| %>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :image %>
-        </div>
-        <div id="new-image"></div>
-      <% end %>
-    </div>
+
   </div>
 
 </div>
+
+@gender_man_fetures<% @gender_man_fetures.each do |feature| %>
+<%= feature.id %>
+<% end %>
+<br>
+@gender_woman_features<% @gender_woman_features.each do |feature| %>
+<%= feature.inspect %>
+<% end %>
+<br>
+@gender_be_common_fetures<% @gender_be_common_fetures.each do |feature| %>
+<%= feature.inspect %>
+<% end %>
