@@ -24,27 +24,33 @@
   </div>
   <div class="row">
     <div class="col-4 px-0 my-3">
-      <%= form_with model: @bathhouse, url: create_confirm_bathhouses_path, method: :get do |f| %>
+      <%= form_with url: create_confirm_bathhouses_path, method: :get do |f| %>
         <div class="form-group">
           <label class="text-secondary">画像</label><br>
           <%= f.file_field :image %>
         </div>
         <div id="new-image"></div>
+        <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
+        <%= f.hidden_field :name, value: @bathhouse.name %>
+        <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>
+        <%= f.hidden_field :address_city, value: @bathhouse.address_city %>
+        <%= f.hidden_field :address_town, value: @bathhouse.address_town %>
+        <%= f.hidden_field :address_building, value: @bathhouse.address_building %>
+        <%= f.hidden_field :access, value: @bathhouse.access %>
+        <%= f.hidden_field :parking_information, value: @bathhouse.parking_information %>
+        <%= f.hidden_field :telephone_number, value: @bathhouse.telephone_number %>
+        <%= f.hidden_field :homepage, value: @bathhouse.homepage %>
+        <%= f.hidden_field :regular_holiday, value: @bathhouse.regular_holiday %>
+        <%= f.hidden_field :opening_hours, value: @bathhouse.opening_hours %>
+        <%= f.hidden_field :minimum_fee, value: @bathhouse.minimum_fee %>
+        <%= f.hidden_field :fee_detail, value: @bathhouse.fee_detail %>
+        <%= f.hidden_field :special_note, value: @bathhouse.special_note %>
+
+        <%= f.hidden_field :gender_man_feature_ids, value: @gender_man_fetures.pluck(:id) %>
+        <%= f.hidden_field :gender_woman_feature_ids, value: @gender_woman_features.pluck(:id) %>
+        <%= f.hidden_field :gender_be_common_feature_ids, value: @gender_be_common_fetures.pluck(:id) %>
+        <%= f.submit '確認画面に進む' ,class: 'btn btn-success' %>
       <% end %>
     </div>
-
   </div>
-
 </div>
-
-@gender_man_fetures<% @gender_man_fetures.each do |feature| %>
-<%= feature.id %>
-<% end %>
-<br>
-@gender_woman_features<% @gender_woman_features.each do |feature| %>
-<%= feature.inspect %>
-<% end %>
-<br>
-@gender_be_common_fetures<% @gender_be_common_fetures.each do |feature| %>
-<%= feature.inspect %>
-<% end %>

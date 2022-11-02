@@ -1,2 +1,202 @@
-<h1>Public::Bathhouses#create</h1>
-<p>Find me in app/views/public/bathhouses/create.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>新規施設登録</h2>
+      <p class="">
+        施設登録にご協力いただき誠にありがとうございます。<br>
+        登録内容は登録後に本サイト会員であれば誰でも編集ができるようになります。<br>
+        わからない箇所は空欄でも登録可能となりますので、<br>
+        入力可能な箇所のみご入力いただきますよう、よろしくお願いいたします。<br>
+      </p>
+    </div>
+  </div>
+  <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
+    <li class="bathhouse-border">施設情報入力</li>
+    <li>→</li>
+    <li>画像登録</li>
+    <li>→</li>
+    <li>登録確認</li>
+  </ul>
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h3 class="font-weight-bold mb-3">■基本情報</h3>
+      <%= form_with model: @bathhouse, url: image_bathhouses_path, method: :get do |f| %>
+        <div class="ml-4">
+          <div class="d-flex">
+            <h5 class="font-weight-bold">施設名</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= @bathhouse.name class: "form-control mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">都道府県</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= @bathhouse,prefecture_id class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">郵便番号</h5>
+          <%= @bathhouse.postal_code class: "form-control mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">住所１</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= @bathhouse.address_city class: "form-control mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">住所２</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= @bathhouse.address_town class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">住所３</h5>
+          <%= @bathhouse.address_building class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">アクセス</h5>
+          <%= @bathhouse.access class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">駐車場情報</h5>
+          <%= @bathhouse.parking_information class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">TEL</h5>
+          <%= @bathhouse.telephone_number class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">HP</h5>
+          <%= @bathhouse.homepage class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">定休日</h5>
+          <%= @bathhouse.regular_holiday class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">営業時間</h5>
+          <%= @bathhouse.opening_hours class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">最低料金（大人）</h5>
+          <%= @bathhouse.minimum_fee class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">料金詳細</h5>
+          <%= @bathhouse.fee_detail class: "form-control mb-3" %>
+        </div>
+        <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
+        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
+        <%= f.fields_for 'gender_man_attributes', Gender.new do |m| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <% @gender_man_bath_facilities.each do |man_bath_facilities| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3">
+                      <%= man_bath_facilities.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <% @gender_man_sauna.each do |man_sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3">
+                      <%= man_sauna.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
+        <%= f.fields_for 'gender_woman_attributes', Gender.new do |w| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <% @gender_woman_bath_facilities.each do |woman_bath_facilities| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3">
+                      <%= woman_bath_facilities.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <% @gender_woman_sauna.each do |woman_sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3">
+                      <%= woman_sauna.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
+        <%= f.fields_for 'gender_be_common_attributes', Gender.new do |c| %>
+          <div class="row">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+              <% @other.each do |other| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= other.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+              <% @building_facilities.each do |building_facilities| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= building_facilities.name %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 ml-4">
+            <div class="d-flex">
+              <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
+              <p class="">（ローカルルール等）</p>
+            </div>
+            <%= @bathhouse.special_note class: "form-control mb-3" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 mx-auto">
+            <%= f.submit '施設を登録する' ,class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
