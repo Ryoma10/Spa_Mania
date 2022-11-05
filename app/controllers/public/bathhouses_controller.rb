@@ -31,32 +31,110 @@ class Public::BathhousesController < ApplicationController
     #@gender = gender_men_attributes.all
     @bathhouse = Bathhouse.new(bathhouse_params_2)
     #@gender_man_fetures = Feature.find(params[:bathhouse][:gender_man_attributes][:feature_ids].compact_blank)
-    man_ids =  params[:gender_man_feature_ids].split(" ").map {|id| id.to_i}
-    man =  Feature.where(id: man_ids)
-    woman_ids =  params[:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
-    woman =  Feature.where(id: woman_ids)
-    common_ids =  params[:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
-    common =  Feature.where(id: common_ids)
-   
-    @gender_man_bath_facilities =  man.where(category: 'bath_facilities')
-    @gender_man_sauna = man.where(category: 'sauna')
-  
+    man_feature_ids =  params[:gender_man_feature_ids].split(" ").map {|id| id.to_i}
+    @man_feature =  Feature.where(id: man_feature_ids)
+    woman_feature_ids =  params[:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
+    @woman_feature =  Feature.where(id: woman_feature_ids)
+    be_common_ids =  params[:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
+    @be_common =  Feature.where(id: be_common_ids)
+
+    @bath_facilities = Feature.where(category: 'bath_facilities')
+    @sauna = Feature.where(category: 'sauna')
+    @other = Feature.where(category: 'other')
+    @building_facilities = Feature.where(category: 'building_facilities')
+
+    @gender_man_bath_facilities = @man_feature.where(category: 'bath_facilities')
+    @gender_man_sauna = @man_feature.where(category: 'sauna')
+
 
     #@gender_woman_features = Feature.find(params[:bathhouse][:gender_woman_attributes][:feature_ids].compact_blank)
-    @gender_woman_bath_facilities = woman.where(category: 'bath_facilities')
-    @gender_woman_sauna = woman.where(category: 'sauna')
+    @gender_woman_bath_facilities = @woman_feature.where(category: 'bath_facilities')
+    @gender_woman_sauna = @woman_feature.where(category: 'sauna')
 
     #@gender_be_common_fetures = Feature.find(params[:bathhouse][:gender_be_common_attributes][:feature_ids].compact_blank)
-    @other = common.where(category: 'other')
-    @building_facilities = common.where(category: 'building_facilities')
+    @other = @be_common.where(category: 'other')
+    @building_facilities = @be_common.where(category: 'building_facilities')
 
     @index = 0
   end
 
   def create
+    @bathhouse = Bathhouse.new(bathhouse_params_2)
+    @bathhouse.user_id = current_user.id
+    @bathhouse.save
+
+    @bathhouse_gender_man = Gender.new
+    @bathhouse_gender_man.bathhouse_id = @bathhouse.id
+    @bathhouse_gender_man.sex = 0
+    @bathhouse_gender_man.save
+    man_feature_ids =  params[:gender_man_feature_ids].split(" ").map {|id| id.to_i}
+    @man_feature =  Feature.where(id: man_feature_ids)
+    @man_feature.each do |man_feature|
+      @bathhouse_gender_man_category = Category.new
+      @bathhouse_gender_man_category.gender_id = @bathhouse_gender_man.id
+      @bathhouse_gender_man_category.feature_id = man_feature.id
+      @bathhouse_gender_man_category.save
+    end
+
+    @bathhouse_gender_woman = Gender.new
+    @bathhouse_gender_woman.bathhouse_id = @bathhouse.id
+    @bathhouse_gender_woman.sex = 1
+    @bathhouse_gender_woman.save
+    woman_feature_ids =  params[:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
+    @woman_feature =  Feature.where(id: woman_feature_ids)
+    @woman_feature.each do |woman_feature|
+      @bathhouse_gender_woman_category = Category.new
+      @bathhouse_gender_woman_category.gender_id = @bathhouse_gender_woman.id
+      @bathhouse_gender_woman_category.feature_id = woman_feature.id
+      @bathhouse_gender_woman_category.save
+    end
+
+    @bathhouse_be_common = Gender.new
+    @bathhouse_be_common.bathhouse_id = @bathhouse.id
+    @bathhouse_be_common.sex = 2
+    @bathhouse_be_common.save
+    be_common_ids =  params[:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
+    @be_common =  Feature.where(id: be_common_ids)
+    @be_common.each do |be_common_feature|
+      @bathhouse_be_common_category = Category.new
+      @bathhouse_be_common_category.gender_id = @bathhouse_be_common.id
+      @bathhouse_be_common_category.feature_id = be_common_feature.id
+      @bathhouse_be_common_category.save
+    end
+    redirect_to bathhouse_path(@bathhouse.id)
+
   end
 
   def show
+    @bathhouse = Bathhouse.find(params[:id])
+    @gender = Gender.where(bathhouse_id: @bathhouse.id)
+    @bath_facilities = Feature.where(category: 'bath_facilities')
+    @sauna = Feature.where(category: 'sauna')
+    @other = Feature.where(category: 'other')
+    @building_facilities = Feature.where(category: 'building_facilities')
+
+    bathhouse_gender_man = @gender.where(sex: 0)
+    bathhouse_gender_woman = @gender.where(sex: 1)
+    bathhouse_gender_be_common = @gender.where(sex: 2)
+
+    gender_man_category = Category.where(gender_id: bathhouse_gender_man.ids)
+    gender_woman_category= Category.where(gender_id: bathhouse_gender_woman.ids)
+    gender_be_common_category = Category.where(gender_id: bathhouse_gender_be_common.ids)
+
+    gender_man_bath_facilities = gender_man_category.where(feature_id: @bath_facilities.ids)
+    gender_man_sauna = gender_man_category.where(feature_id: @sauna.ids)
+    gender_woman_bath_facilities = gender_woman_category.where(feature_id: @bath_facilities.ids)
+    gender_woman_sauna = gender_woman_category.where(feature_id: @sauna.ids)
+    gender_other = gender_be_common_category.where(feature_id: @other.ids)
+    gender_building_facilities = gender_be_common_category.where(feature_id: @building_facilities.ids)
+
+    @bathhouse_man_bath_facilities = Feature.where(id: gender_man_bath_facilities)
+    @bathhouse_man_sauna = Feature.where(id: gender_man_sauna)
+    @bathhouse_woman_bath_facilities = Feature.where(id: gender_woman_bath_facilities)
+    @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna)
+    @bathhouse_other = Feature.where(id: gender_other)
+    @bathhouse_building_facilities = Feature.where(id: gender_building_facilities)
+
   end
 
   def index
@@ -106,8 +184,8 @@ class Public::BathhousesController < ApplicationController
 #      gender_be_common_attributes: [:feature_ids]
       )
   end
-  
-    def bathhouse_params_2
+
+  def bathhouse_params_2
     params.permit(
       :prefecture_id,
       :name,

@@ -67,7 +67,7 @@
         <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
         <%= f.fields_for 'gender_man_attributes', Gender.new do |m| %>
-          <div class="row">
+          <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
               <%= m.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
@@ -76,8 +76,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= bath_facilitie.check_box %>
-                      <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
+                      <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>
@@ -86,7 +85,7 @@
               <% @index = 0 %>
             </div>
           </div>
-          <div class="row">
+          <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
               <%= m.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
@@ -95,8 +94,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= sauna.check_box %>
-                      <sapn class="ml-1"><%= sauna.text %></sapn>
+                      <%= sauna.label { sauna.check_box + sauna.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>
@@ -108,7 +106,7 @@
         <% end %>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
         <%= f.fields_for 'gender_woman_attributes', Gender.new do |w| %>
-          <div class="row">
+          <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
               <%= w.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
@@ -117,8 +115,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= bath_facilitie.check_box %>
-                      <sapn class="ml-1"><%= bath_facilitie.text %></sapn>
+                      <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>
@@ -127,7 +124,7 @@
               <% @index = 0 %>
             </div>
           </div>
-          <div class="row">
+          <div class="row check_box">
           <div class="col-10 px-0 mt-3 md-2 ml-4">
             <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
               <%= w.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
@@ -136,8 +133,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= sauna.check_box %>
-                      <sapn class="ml-1"><%= sauna.text %></sapn>
+                      <%= sauna.label { sauna.check_box + sauna.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>
@@ -149,7 +145,7 @@
         <% end %>
         <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
         <%= f.fields_for 'gender_be_common_attributes', Gender.new do |c| %>
-          <div class="row">
+          <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
               <%= c.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
@@ -158,8 +154,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= other.check_box %>
-                      <sapn class="ml-1"><%= other.text %></sapn>
+                      <%= other.label { other.check_box + other.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>
@@ -168,7 +163,7 @@
               <% @index = 0 %>
             </div>
           </div>
-          <div class="row">
+          <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
               <%= c.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
@@ -177,8 +172,7 @@
                   <ul class="row features-list">
                 <% end %>
                     <li class="col-3 d-flex">
-                      <%= building_facilities.check_box %>
-                      <sapn class="ml-1"><%= building_facilities.text %></sapn>
+                      <%= building_facilities.label { building_facilities.check_box + building_facilities.text } %>
                     </li>
                 <% if @index % 4 == 0 %>
                   </ul>

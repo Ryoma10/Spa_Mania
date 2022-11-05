@@ -50,7 +50,7 @@
             <h5 class="font-weight-bold">都道府県</h5>
             <p class="bathhouse-null-false">※必須</p>
           </div>
-          <p class="mb-3"><%= @bathhouse.prefecture_id %></p>
+          <p class="mb-3"><%= Prefecture.find(@bathhouse.prefecture_id).name %></p>
           <h5 class="font-weight-bold">郵便番号</h5>
           <p class="mb-3"><%= @bathhouse.postal_code %></p>
           <div class="d-flex">
@@ -66,28 +66,28 @@
           <h5 class="font-weight-bold">住所３</h5>
           <p class="mb-3"><%= @bathhouse.address_building %></p>
           <h5 class="font-weight-bold">アクセス</h5>
-          <p class="mb-3"><%= @bathhouse.access %></p>
+          <p class="mb-3"><%= safe_join(@bathhouse.access.split("\n"),tag(:br)) %></p>
           <h5 class="font-weight-bold">駐車場情報</h5>
-          <p class="mb-3"><%= @bathhouse.parking_information %></p>
+          <p class="mb-3"><%= safe_join(@bathhouse.parking_information.split("\n"),tag(:br)) %></p>
           <h5 class="font-weight-bold">TEL</h5>
           <p class="mb-3"><%= @bathhouse.telephone_number %></p>
           <h5 class="font-weight-bold">HP</h5>
           <p class="mb-3"><%= @bathhouse.homepage %></p>
           <h5 class="font-weight-bold">定休日</h5>
-          <p class="mb-3"><%= @bathhouse.regular_holiday %></p>
+          <p class="mb-3"><%= safe_join(@bathhouse.regular_holiday.split("\n"),tag(:br)) %></p>
           <h5 class="font-weight-bold">営業時間</h5>
-          <p class="mb-3"><%= @bathhouse.opening_hours %></p>
+          <p class="mb-3"><%= safe_join(@bathhouse.opening_hours.split("\n"),tag(:br)) %></p>
           <h5 class="font-weight-bold">最低料金（大人）</h5>
           <p class="mb-3"><%= @bathhouse.minimum_fee %></p>
           <h5 class="font-weight-bold">料金詳細</h5>
-          <p class="mb-3"><%= @bathhouse.fee_detail %></p>
+          <p class="mb-3"><%= safe_join(@bathhouse.fee_detail.split("\n"),tag(:br)) %></p>
         </div>
         <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
           <div class="row">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <% @gender_man_bath_facilities.each.with_index(1) do |feature, index| %>
+              <% @bath_facilities.each.with_index(1) do |feature, index| %>
                 <% if index % 4 == 1 %>
                   <ul class="row features-list">
                 <% end %>
@@ -194,12 +194,35 @@
               <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
               <p class="">（ローカルルール等）</p>
             </div>
-            <p class="mb-3"><%= @bathhouse.special_note %></p>
+            <p class="mb-3"><%= safe_join(@bathhouse.special_note.split("\n"),tag(:br)) %></p>
           </div>
         </div>
         <div class="row">
-          <div class="col-10 px-0 mt-3 md-2 mx-auto">
+          <div class="col-10 px-0 mt-3 md-2">
+            <%= form_with url: bathhouses_path, method: :post do |f| %>
+              <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
+              <%= f.hidden_field :name, value: @bathhouse.name %>
+              <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>
+              <%= f.hidden_field :address_city, value: @bathhouse.address_city %>
+              <%= f.hidden_field :address_town, value: @bathhouse.address_town %>
+              <%= f.hidden_field :address_building, value: @bathhouse.address_building %>
+              <%= f.hidden_field :access, value: @bathhouse.access %>
+              <%= f.hidden_field :parking_information, value: @bathhouse.parking_information %>
+              <%= f.hidden_field :telephone_number, value: @bathhouse.telephone_number %>
+              <%= f.hidden_field :homepage, value: @bathhouse.homepage %>
+              <%= f.hidden_field :regular_holiday, value: @bathhouse.regular_holiday %>
+              <%= f.hidden_field :opening_hours, value: @bathhouse.opening_hours %>
+              <%= f.hidden_field :minimum_fee, value: @bathhouse.minimum_fee %>
+              <%= f.hidden_field :fee_detail, value: @bathhouse.fee_detail %>
+              <%= f.hidden_field :special_note, value: @bathhouse.special_note %>
 
+              <%= f.hidden_field :gender_man_feature_ids, value: @man_feature.pluck(:id) %>
+              <%= f.hidden_field :gender_woman_feature_ids, value: @woman_feature.pluck(:id) %>
+              <%= f.hidden_field :gender_be_common_feature_ids, value: @be_common.pluck(:id) %>
+              <div class="mx-auto">
+                <%= f.submit '施設を登録する' ,class: 'btn btn-success' %>
+              </div>
+            <% end %>
           </div>
         </div>
     </div>

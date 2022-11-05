@@ -1,4 +1,5 @@
 class Bathhouse < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :reviews,              dependent: :destroy
   has_many :genders,              dependent: :destroy
   has_many :favourite_bathhouses, dependent: :destroy

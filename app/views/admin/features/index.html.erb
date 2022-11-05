@@ -7,7 +7,7 @@
           <tr>
             <th>カテゴリ</th>
             <td>
-              cccc
+              <%= f.select :category, Feature.categories.keys.map {|k| [I18n.t("enums.feature.category.#{k}"), k]} %>
             </td>
           </tr>
           <tr>
