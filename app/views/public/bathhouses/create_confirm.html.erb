@@ -1,22 +1,3 @@
-<h1>Public::Bathhouses#create_confirm</h1>
-<p>Find me in app/views/public/bathhouses/create_confirm.html.erb</p>
-@gender_man_fetures<% @gender_man_bath_facilities.each do |feature| %>
-<%= feature.id %>
-<% end %>
-
-@gender_man_fetures<% @gender_man_sauna.each do |feature| %>
-<%= feature.id %>
-<% end %>
-
-
-<%= form_with url: root_path, method: :get do |f|%>
-
-
-
-  <%= f.collection_check_boxes(:feature_ids, Feature.where(category: "bath_facilities"), :id, :name,{ checked: @gender_man_bath_facilities.pluck(:id), disabled: Feature.where(category: "bath_facilities").pluck(:id)} ) %>
-
-<% end %>
-
 <p id="notice"></p>
 <div class="container">
   <div class="row">
@@ -87,7 +68,7 @@
           <div class="row">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <% @bath_facilities.each.with_index(1) do |feature, index| %>
+              <% @gender_woman_bath_facilities.each.with_index(1) do |feature, index| %>
                 <% if index % 4 == 1 %>
                   <ul class="row features-list">
                 <% end %>

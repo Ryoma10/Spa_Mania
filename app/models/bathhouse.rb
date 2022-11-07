@@ -12,5 +12,5 @@ class Bathhouse < ApplicationRecord
   attribute :gender_woman_attributes, type: Array
   attribute :gender_be_common_attributes, type: Array
 
-  has_one_attached :bathhouse_image
+  has_many_attached :bathhouse_images
 end

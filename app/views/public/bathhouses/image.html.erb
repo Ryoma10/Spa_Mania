@@ -27,7 +27,7 @@
       <%= form_with url: create_confirm_bathhouses_path, method: :get do |f| %>
         <div class="form-group">
           <label class="text-secondary">画像</label><br>
-          <%= f.file_field :image %>
+          <%= f.file_field :bathhouse_image, multiple: true %>
         </div>
         <div id="new-image"></div>
         <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>

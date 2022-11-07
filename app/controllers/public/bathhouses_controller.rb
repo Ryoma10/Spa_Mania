@@ -128,13 +128,12 @@ class Public::BathhousesController < ApplicationController
     gender_other = gender_be_common_category.where(feature_id: @other.ids)
     gender_building_facilities = gender_be_common_category.where(feature_id: @building_facilities.ids)
 
-    @bathhouse_man_bath_facilities = Feature.where(id: gender_man_bath_facilities)
-    @bathhouse_man_sauna = Feature.where(id: gender_man_sauna)
-    @bathhouse_woman_bath_facilities = Feature.where(id: gender_woman_bath_facilities)
-    @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna)
-    @bathhouse_other = Feature.where(id: gender_other)
-    @bathhouse_building_facilities = Feature.where(id: gender_building_facilities)
-
+    @bathhouse_man_bath_facilities = Feature.where(id: gender_man_bath_facilities.pluck(:feature_id))
+    @bathhouse_man_sauna = Feature.where(id: gender_man_sauna.pluck(:feature_id))
+    @bathhouse_woman_bath_facilities = Feature.where(id: gender_woman_bath_facilities.pluck(:feature_id))
+    @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna.pluck(:feature_id))
+    @bathhouse_other = Feature.where(id: gender_other.pluck(:feature_id))
+    @bathhouse_building_facilities = Feature.where(id: gender_building_facilities.pluck(:feature_id))
   end
 
   def index

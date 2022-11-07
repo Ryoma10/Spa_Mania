@@ -1,8 +1,28 @@
 <p id="notice"></p>
 <div class="container">
-  <div class="row">
-    <div class="col-10 px-0 my-3">
-      <h2>施設登録確認</h2>
+  <div class="row mb-3">
+    <div class="col-1"></div>
+    <div class="col-5 px-0">
+      <h5 class="m-0 text-secondary font-weight-bold"><%= Prefecture.find(@bathhouse.prefecture_id).name + @bathhouse.address_city %></h5>
+      <h1 class="m-0 font-weight-bold mb-2"><%= @bathhouse.name %></h1>
+      <h4 class="m-0 font-weight-bold">
+        平均満足度　★★★★☆　4.5/n件
+      </h4>
+    </div>
+    <div class="col-5 px-0">
+      <div class="text-right">
+        <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+        <%= button_to "投稿する", new_review_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
+        <%= button_to "お気に入りに登録", new_review_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
+      </div>
+    </div>
+    <div class="col-1"></div>
+    <ul class="row bathhouse-list font-weight-bold justify-content-center w-100 mx-auto mb-3 px-0">
+      <li class="bathhouse-border fontsize-24 mx-5">施設情報</li>
+      <li class="fontsize-24 mx-5"><%= link_to "みんなの投稿", reviews_index_bathhouse_path, class: "link-none" %></li>
+      <li class="fontsize-24 mx-5"><%= link_to "混雑情報", congestion_situation_bathhouse_path, class: "link-none" %></li>
+    </ul>
+  </div>
   <div class="row">
     <div class="col-10 px-0 my-3">
       <h3 class="font-weight-bold mb-3">■基本情報</h3>
