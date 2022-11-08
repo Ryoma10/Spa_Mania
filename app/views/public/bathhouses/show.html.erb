@@ -24,8 +24,27 @@
     </ul>
   </div>
   <div class="row">
-    <div class="col-10 px-0 my-3">
+    <div class="col-1"></div>
+    <div class="col-4 px-0 my-3">
       <h3 class="font-weight-bold mb-3">■基本情報</h3>
+      <table>
+        <tr>
+          <th>住所</th>
+          <td>
+            <%= Prefecture.find(@bathhouse.prefecture_id).name %>&emsp;
+            <%= @bathhouse.address_city %>&emsp;
+            <%= @bathhouse.address_town %>
+            <% if @bathhouse.address_building.present? %>
+            </br>
+            <%= @bathhouse.address_building %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+
+
+
         <div class="ml-4">
           <div class="d-flex">
             <h5 class="font-weight-bold">施設名</h5>

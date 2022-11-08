@@ -27,9 +27,34 @@
       <%= form_with url: create_confirm_bathhouses_path, method: :get do |f| %>
         <div class="form-group">
           <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image, multiple: true %>
+          <%= f.file_field :bathhouse_image_main, multiple: true %>
         </div>
-        <div id="new-image"></div>
+        <div id="new-image_main"></div>
+        <div class="form-group">
+          <label class="text-secondary">画像</label><br>
+          <%= f.file_field :bathhouse_image_sub1, multiple: true %>
+        </div>
+        <div id="new-image_sub1"></div>
+        <div class="form-group">
+          <label class="text-secondary">画像</label><br>
+          <%= f.file_field :bathhouse_image_sub2, multiple: true %>
+        </div>
+        <div id="new-image_sub2"></div>
+        <div class="form-group">
+          <label class="text-secondary">画像</label><br>
+          <%= f.file_field :bathhouse_image_sub3, multiple: true %>
+        </div>
+        <div id="new-image_sub3"></div>
+        <div class="form-group">
+          <label class="text-secondary">画像</label><br>
+          <%= f.file_field :bathhouse_image_sub4, multiple: true %>
+        </div>
+        <div id="new-image_sub4"></div>
+        <div class="form-group">
+          <label class="text-secondary">画像</label><br>
+          <%= f.file_field :bathhouse_image_sub5, multiple: true %>
+        </div>
+        <div id="new-image_sub5"></div>
         <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
         <%= f.hidden_field :name, value: @bathhouse.name %>
         <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>

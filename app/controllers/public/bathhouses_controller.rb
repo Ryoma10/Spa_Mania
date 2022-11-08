@@ -201,6 +201,13 @@ class Public::BathhousesController < ApplicationController
       :minimum_fee,
       :fee_detail,
       :special_note,
+      :bathhouse_image_main,
+      :bathhouse_image_sub1,
+      :bathhouse_image_sub2,
+      :bathhouse_image_sub3,
+      :bathhouse_image_sub4,
+      :bathhouse_image_sub5,
+
 #      gender_man_attributes: [:feature_ids],
 #      gender_woman_attributes: [:feature_ids],
 #      gender_be_common_attributes: [:feature_ids]

@@ -181,6 +181,38 @@
         <div class="row">
           <div class="col-10 px-0 mt-3 md-2">
             <%= form_with url: bathhouses_path, method: :post do |f| %>
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_main_cache %>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_sub1_cache, multiple: true, value: @bathhouse.bathhouse_image_sub1 %>
+              </div>
+              <div id="new-image_sub1"></div>
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_sub2_cache, multiple: true, value: @bathhouse.bathhouse_image_sub2 %>
+              </div>
+              <div id="new-image_sub2"></div>
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_sub3_cache, multiple: true, value: @bathhouse.bathhouse_image_sub3 %>
+              </div>
+              <div id="new-image_sub3"></div>
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_sub4_cache, multiple: true, value: @bathhouse.bathhouse_image_sub4 %>
+              </div>
+              <div id="new-image_sub4"></div>
+              <div class="form-group">
+                <label class="text-secondary">画像</label><br>
+                <%= f.hidden_field :bathhouse_image_sub5_cache, multiple: true, value: @bathhouse.bathhouse_image_sub5 %>
+              </div>
+              <div id="new-image_sub5"></div>
               <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
               <%= f.hidden_field :name, value: @bathhouse.name %>
               <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>
