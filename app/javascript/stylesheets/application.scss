@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import "skippr";
 
 .features-list {
   list-style: none;
@@ -61,14 +62,4 @@
 
 .check_box{
   user-select: none;
-}
-
-input:disabled {
-    accent-color: #0000ff;
-    color: #0000ff;
-    cursor: default;
-}
-
-input[type="checkbox"]:disabled {
-    background-color: #0000ff;
 }
