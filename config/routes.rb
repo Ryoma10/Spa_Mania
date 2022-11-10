@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       collection do
         get :confirm
         get :image
-        get :create_confirm
+        post :create_confirm
       end
     end
 

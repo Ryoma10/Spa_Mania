@@ -28,14 +28,24 @@ class Public::BathhousesController < ApplicationController
   end
 
   def create_confirm
+    @confirm = Confirm.new()
+    @confirm.bathhouse_image_main = params[:bathhouse][:bathhouse_image_main]
+    @confirm.bathhouse_image_sub1 = params[:bathhouse][:bathhouse_image_sub1]
+    @confirm.bathhouse_image_sub2 = params[:bathhouse][:bathhouse_image_sub2]
+    @confirm.bathhouse_image_sub3 = params[:bathhouse][:bathhouse_image_sub3]
+    @confirm.bathhouse_image_sub4 = params[:bathhouse][:bathhouse_image_sub4]
+    @confirm.bathhouse_image_sub5 = params[:bathhouse][:bathhouse_image_sub5]
+    @confirm.save
+
     #@gender = gender_men_attributes.all
     @bathhouse = Bathhouse.new(bathhouse_params_2)
+
     #@gender_man_fetures = Feature.find(params[:bathhouse][:gender_man_attributes][:feature_ids].compact_blank)
-    man_feature_ids =  params[:gender_man_feature_ids].split(" ").map {|id| id.to_i}
+    man_feature_ids =  params[:bathhouse][:gender_man_feature_ids].split(" ").map {|id| id.to_i}
     @man_feature =  Feature.where(id: man_feature_ids)
-    woman_feature_ids =  params[:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
+    woman_feature_ids =  params[:bathhouse][:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
     @woman_feature =  Feature.where(id: woman_feature_ids)
-    be_common_ids =  params[:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
+    be_common_ids =  params[:bathhouse][:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
     @be_common =  Feature.where(id: be_common_ids)
 
     @bath_facilities = Feature.where(category: 'bath_facilities')
@@ -55,13 +65,20 @@ class Public::BathhousesController < ApplicationController
     @other = @be_common.where(category: 'other')
     @building_facilities = @be_common.where(category: 'building_facilities')
 
-    @index = 0
   end
 
   def create
     @bathhouse = Bathhouse.new(bathhouse_params_2)
     @bathhouse.user_id = current_user.id
+    @confirm = Confirm.find(confirm_params[:confirm_id])
+#    @bathhouse.bathhouse_image_main = @confirm.bathhouse_image_main
+#    @bathhouse.bathhouse_image_sub1 = @confirm.bathhouse_image_sub1
+#    @bathhouse.bathhouse_image_sub2 = @confirm.bathhouse_image_sub2
+#    @bathhouse.bathhouse_image_sub3 = @confirm.bathhouse_image_sub3
+#    @bathhouse.bathhouse_image_sub4 = @confirm.bathhouse_image_sub4
+#    @bathhouse.bathhouse_image_sub5 = @confirm.bathhouse_image_sub5
     @bathhouse.save
+    @confirm.destroy
 
     @bathhouse_gender_man = Gender.new
     @bathhouse_gender_man.bathhouse_id = @bathhouse.id
@@ -137,6 +154,7 @@ class Public::BathhousesController < ApplicationController
   end
 
   def index
+    @bathhouses = Bathhouse.where(complete: true)
   end
 
   def reviews_index
@@ -185,7 +203,7 @@ class Public::BathhousesController < ApplicationController
   end
 
   def bathhouse_params_2
-    params.permit(
+    params.require(:bathhouse).permit(
       :prefecture_id,
       :name,
       :postal_code,
@@ -212,6 +230,10 @@ class Public::BathhousesController < ApplicationController
 #      gender_woman_attributes: [:feature_ids],
 #      gender_be_common_attributes: [:feature_ids]
       )
+  end
+
+  def confirm_params
+    params.require(:bathhouse).permit(:confirm_id)
   end
 
 end

@@ -9,7 +9,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_main').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_main').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-main');
       if (imageContent){
         imageContent.remove();
@@ -29,7 +29,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_sub1').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_sub1').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-sub1');
       if (imageContent){
         imageContent.remove();
@@ -49,7 +49,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_sub2').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_sub2').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-sub2');
       if (imageContent){
         imageContent.remove();
@@ -69,7 +69,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_sub3').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_sub3').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-sub3');
       if (imageContent){
         imageContent.remove();
@@ -88,7 +88,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_sub4').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_sub4').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-sub4');
       if (imageContent){
         imageContent.remove();
@@ -108,7 +108,7 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
       imageElement.appendChild(blobImage);
     };
 
-    document.getElementById('bathhouse_image_sub5').addEventListener('change', (e) =>{
+    document.getElementById('bathhouse_bathhouse_image_sub5').addEventListener('change', (e) =>{
       const imageContent = document.getElementById('new-img-sub5');
       if (imageContent){
         imageContent.remove();
