@@ -84,7 +84,7 @@ class Public::BathhousesController < ApplicationController
     @bathhouse_gender_man.bathhouse_id = @bathhouse.id
     @bathhouse_gender_man.sex = 0
     @bathhouse_gender_man.save
-    man_feature_ids =  params[:gender_man_feature_ids].split(" ").map {|id| id.to_i}
+    man_feature_ids =  params[:bathhouse][:gender_man_feature_ids].split(" ").map {|id| id.to_i}
     @man_feature =  Feature.where(id: man_feature_ids)
     @man_feature.each do |man_feature|
       @bathhouse_gender_man_category = Category.new
@@ -97,7 +97,7 @@ class Public::BathhousesController < ApplicationController
     @bathhouse_gender_woman.bathhouse_id = @bathhouse.id
     @bathhouse_gender_woman.sex = 1
     @bathhouse_gender_woman.save
-    woman_feature_ids =  params[:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
+    woman_feature_ids =  params[:bathhouse][:gender_woman_feature_ids].split(" ").map {|id| id.to_i}
     @woman_feature =  Feature.where(id: woman_feature_ids)
     @woman_feature.each do |woman_feature|
       @bathhouse_gender_woman_category = Category.new
@@ -110,7 +110,7 @@ class Public::BathhousesController < ApplicationController
     @bathhouse_be_common.bathhouse_id = @bathhouse.id
     @bathhouse_be_common.sex = 2
     @bathhouse_be_common.save
-    be_common_ids =  params[:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
+    be_common_ids =  params[:bathhouse][:gender_be_common_feature_ids].split(" ").map {|id| id.to_i}
     @be_common =  Feature.where(id: be_common_ids)
     @be_common.each do |be_common_feature|
       @bathhouse_be_common_category = Category.new

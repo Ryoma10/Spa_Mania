@@ -68,7 +68,7 @@
           <div class="row">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <% @gender_woman_bath_facilities.each.with_index(1) do |feature, index| %>
+              <% @gender_man_bath_facilities.each.with_index(1) do |feature, index| %>
                 <% if index % 4 == 1 %>
                   <ul class="row features-list">
                 <% end %>
@@ -185,7 +185,7 @@
                 <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_main.attached? %>
                   <%= image_tag @confirm.bathhouse_image_main %>
-                  <%= f.hidden_field :bathhouse_image_main, value: f.object.bathhouse_image_main.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_main, value: @confirm.bathhouse_image_main.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>
@@ -194,7 +194,7 @@
               <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_sub1.attached? %>
                   <%= image_tag @confirm.bathhouse_image_sub1 %>
-                  <%= f.hidden_field :bathhouse_image_sub1, value: f.object.bathhouse_image_sub1.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_sub1, value: @confirm.bathhouse_image_sub1.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>
@@ -203,7 +203,7 @@
               <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_sub2.attached? %>
                   <%= image_tag @confirm.bathhouse_image_sub2 %>
-                  <%= f.hidden_field :bathhouse_image_sub2, value: f.object.bathhouse_image_sub2.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_sub2, value: @confirm.bathhouse_image_sub2.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>
@@ -212,7 +212,7 @@
                 <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_sub3.attached? %>
                   <%= image_tag @confirm.bathhouse_image_sub3 %>
-                  <%= f.hidden_field :bathhouse_image_sub3, value: f.object.bathhouse_image_sub3.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_sub3, value: @confirm.bathhouse_image_sub3.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>
@@ -221,7 +221,7 @@
                 <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_sub4.attached? %>
                   <%= image_tag @confirm.bathhouse_image_sub4 %>
-                  <%= f.hidden_field :bathhouse_image_sub4, value: f.object.bathhouse_image_sub4.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_sub4, value: @confirm.bathhouse_image_sub4.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>
@@ -230,7 +230,7 @@
                 <label class="text-secondary">画像</label><br>
                 <% if f.object.bathhouse_image_sub5.attached? %>
                   <%= image_tag @confirm.bathhouse_image_sub5 %>
-                  <%= f.hidden_field :bathhouse_image_sub5, value: f.object.bathhouse_image_sub5.signed_id %>
+                  <%= f.hidden_field :bathhouse_image_sub5, value: @confirm.bathhouse_image_sub5.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png' %>
                 <% end %>

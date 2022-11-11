@@ -23,39 +23,53 @@
     <h3 class="font-weight-bold mb-3">■画像登録</h3>
   </div>
   <div class="row">
-    <div class="col-4 px-0 my-3">
-      <%= form_with model: @bathhouse, url: create_confirm_bathhouses_path, method: :post do |f| %>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_main %>
+    <%= form_with model: @bathhouse, url: create_confirm_bathhouses_path, method: :post do |f| %>
+      <div class="col-10 px-0 my-3 d-flex justify-content-between">
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">メイン画像</label><br>
+            <%= f.file_field :bathhouse_image_main %>
+          </div>
+          <div id="new-image_main"></div>
         </div>
-        <div id="new-image_main"></div>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_sub1 %>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像１</label><br>
+            <%= f.file_field :bathhouse_image_sub1 %>
+          </div>
+          <div id="new-image_sub1"></div>
         </div>
-        <div id="new-image_sub1"></div>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_sub2 %>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像２</label><br>
+            <%= f.file_field :bathhouse_image_sub2 %>
+          </div>
+          <div id="new-image_sub2"></div>
         </div>
-        <div id="new-image_sub2"></div>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_sub3 %>
+      </div>
+      <div class="col-10 px-0 my-3 d-flex justify-content-between">
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像３</label><br>
+            <%= f.file_field :bathhouse_image_sub3 %>
+          </div>
+          <div id="new-image_sub3"></div>
         </div>
-        <div id="new-image_sub3"></div>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_sub4 %>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像４</label><br>
+            <%= f.file_field :bathhouse_image_sub4 %>
+          </div>
+          <div id="new-image_sub4"></div>
         </div>
-        <div id="new-image_sub4"></div>
-        <div class="form-group">
-          <label class="text-secondary">画像</label><br>
-          <%= f.file_field :bathhouse_image_sub5 %>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像５</label><br>
+            <%= f.file_field :bathhouse_image_sub5 %>
+          </div>
+          <div id="new-image_sub5"></div>
         </div>
-        <div id="new-image_sub5"></div>
-
+      </div>
         <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
         <%= f.hidden_field :name, value: @bathhouse.name %>
         <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>
