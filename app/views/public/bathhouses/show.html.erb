@@ -85,36 +85,62 @@
       </table>
     </div>
     <div class="col-6 px-0 my-5">
-      <div id="theTarget">
+      <div class="slider">
         <% if @bathhouse.bathhouse_image_main.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_main, width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_main %>
+          </div>
         <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag 'no_image.png' %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub1.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_sub1, width: '90%' %></div>
-        <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_sub1 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub2.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_sub2, width: '90%' %></div>
-        <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_sub2 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub3.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_sub3, width: '90%' %></div>
-        <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_sub3 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub4.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_sub4, width: '90%' %></div>
-        <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_sub4 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub5.attached? %>
-          <div class="image_main text-center"><%= image_tag @bathhouse.bathhouse_image_sub5, width: '90%' %></div>
+          <div class="slick-image">
+            <%= image_tag @bathhouse.bathhouse_image_sub5 %>
+          </div>
+        <% end %>
+      </div>
+      <div class="thumb">
+        <% if @bathhouse.bathhouse_image_main.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_main %>
         <% else %>
-          <div class="image_main text-center"><%= image_tag 'no_image.png', width: '90%' %></div>
+          <%= image_tag 'no_image.png' %>
+        <% end %>
+        <% if @bathhouse.bathhouse_image_sub1.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_sub1 %>
+        <% end %>
+        <% if @bathhouse.bathhouse_image_sub2.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_sub2 %>
+        <% end %>
+        <% if @bathhouse.bathhouse_image_sub3.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_sub3 %>
+        <% end %>
+        <% if @bathhouse.bathhouse_image_sub4.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_sub4 %>
+        <% end %>
+        <% if @bathhouse.bathhouse_image_sub5.attached? %>
+          <%= image_tag @bathhouse.bathhouse_image_sub5 %>
         <% end %>
       </div>
     </div>

@@ -89,8 +89,10 @@
         <%= f.hidden_field :gender_man_feature_ids, value: @gender_man_fetures.pluck(:id) %>
         <%= f.hidden_field :gender_woman_feature_ids, value: @gender_woman_features.pluck(:id) %>
         <%= f.hidden_field :gender_be_common_feature_ids, value: @gender_be_common_fetures.pluck(:id) %>
-        <%= f.submit '確認画面に進む' ,class: 'btn btn-success' %>
-      <% end %>
     </div>
+    <div class="text-center mb-3">
+      <%= f.submit '確認画面に進む' ,class: 'btn btn-success' %>
+    </div>
+    <% end %>
   </div>
 </div>
