@@ -1,2 +1,98 @@
-<h1>Public::Bathhouses#edit_image</h1>
-<p>Find me in app/views/public/bathhouses/edit_image.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>施設画像編集</h2>
+      <p class="">
+        アップロードする画像はご自身で撮影した写真か、<br>
+        使用許可をいただいている画像のみでお願いします。<br>
+        また、プライバシー保護の観点から、<br>
+        他者が写っていない画像のご使用をお願いいたします。<br>
+        不適切な画像をアップロードした場合、削除する場合がございます。<br>
+      </p>
+    </div>
+  </div>
+    <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
+    <li>施設情報入力</li>
+    <li>→</li>
+    <li class="bathhouse-border">画像登録</li>
+    <li>→</li>
+    <li>登録確認</li>
+  </ul>
+  <div class="row">
+    <h3 class="font-weight-bold mb-3">■画像登録</h3>
+  </div>
+  <div class="row">
+    <%= form_with model: @bathhouse, url: edit_confirm_bathhouse_path, method: :post do |f| %>
+      <div class="col-10 px-0 my-3 d-flex justify-content-between">
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">メイン画像</label><br>
+            <%= f.file_field :bathhouse_image_main %>
+          </div>
+          <div id="new-image_main"></div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像１</label><br>
+            <%= f.file_field :bathhouse_image_sub1 %>
+          </div>
+          <div id="new-image_sub1"></div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像２</label><br>
+            <%= f.file_field :bathhouse_image_sub2 %>
+          </div>
+          <div id="new-image_sub2"></div>
+        </div>
+      </div>
+      <div class="col-10 px-0 my-3 d-flex justify-content-between">
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像３</label><br>
+            <%= f.file_field :bathhouse_image_sub3 %>
+          </div>
+          <div id="new-image_sub3"></div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像４</label><br>
+            <%= f.file_field :bathhouse_image_sub4 %>
+          </div>
+          <div id="new-image_sub4"></div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-secondary">画像５</label><br>
+            <%= f.file_field :bathhouse_image_sub5 %>
+          </div>
+          <div id="new-image_sub5"></div>
+        </div>
+      </div>
+        <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>
+        <%= f.hidden_field :name, value: @bathhouse.name %>
+        <%= f.hidden_field :postal_code, value: @bathhouse.postal_code %>
+        <%= f.hidden_field :address_city, value: @bathhouse.address_city %>
+        <%= f.hidden_field :address_town, value: @bathhouse.address_town %>
+        <%= f.hidden_field :address_building, value: @bathhouse.address_building %>
+        <%= f.hidden_field :access, value: @bathhouse.access %>
+        <%= f.hidden_field :parking_information, value: @bathhouse.parking_information %>
+        <%= f.hidden_field :telephone_number, value: @bathhouse.telephone_number %>
+        <%= f.hidden_field :homepage, value: @bathhouse.homepage %>
+        <%= f.hidden_field :regular_holiday, value: @bathhouse.regular_holiday %>
+        <%= f.hidden_field :opening_hours, value: @bathhouse.opening_hours %>
+        <%= f.hidden_field :minimum_fee, value: @bathhouse.minimum_fee %>
+        <%= f.hidden_field :fee_detail, value: @bathhouse.fee_detail %>
+        <%= f.hidden_field :special_note, value: @bathhouse.special_note %>
+
+        <%= f.hidden_field :gender_man_feature_ids, value: @gender_man_fetures.pluck(:id) %>
+        <%= f.hidden_field :gender_woman_feature_ids, value: @gender_woman_features.pluck(:id) %>
+        <%= f.hidden_field :gender_be_common_feature_ids, value: @gender_be_common_fetures.pluck(:id) %>
+    </div>
+    <div class="text-center mb-3">
+      <%= f.submit '確認画面に進む' ,class: 'btn btn-success' %>
+    </div>
+    <% end %>
+  </div>
+</div>

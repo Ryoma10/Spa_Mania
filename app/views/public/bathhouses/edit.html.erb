@@ -1,2 +1,202 @@
-<h1>Public::Bathhouses#edit</h1>
-<p>Find me in app/views/public/bathhouses/edit.html.erb</p>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>施設情報編集録</h2>
+      <p class="">
+        施設登録にご協力いただき誠にありがとうございます。<br>
+        登録内容は登録後に本サイト会員であれば誰でも編集ができるようになります。<br>
+        わからない箇所は空欄でも登録可能となりますので、<br>
+        入力可能な箇所のみご入力いただきますよう、よろしくお願いいたします。<br>
+      </p>
+    </div>
+  </div>
+  <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
+    <li class="bathhouse-border">施設情報入力</li>
+    <li>→</li>
+    <li>画像登録</li>
+    <li>→</li>
+    <li>登録確認</li>
+  </ul>
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h3 class="font-weight-bold mb-3">■基本情報</h3>
+      <%= form_with model: @bathhouse, url: edit_image_bathhouse_path, method: :get do |f| %>
+        <div class="ml-4">
+          <div class="d-flex">
+            <h5 class="font-weight-bold">施設名</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= f.text_field :name, placeholder: "〇〇温泉　スパ〇〇", class: "form-control mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">都道府県</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, class: "form-control prefecture-select mb-3" %>
+          <h5 class="font-weight-bold">郵便番号</h5>
+          <%= f.text_field :postal_code, placeholder: "●●●-××××", class: "form-control bathhouse-postal_code mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">住所１</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= f.text_field :address_city, placeholder: "市、区　例：●●市　○○区", class: "form-control mb-3" %>
+          <div class="d-flex">
+            <h5 class="font-weight-bold">住所２</h5>
+            <p class="bathhouse-null-false">※必須</p>
+          </div>
+          <%= f.text_field :address_town, placeholder: "町、村、番地　例：●●町　○-×-○", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">住所３</h5>
+          <%= f.text_field :address_building, placeholder: "建物名　例：○○ビル　5F", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">アクセス</h5>
+          <%= f.text_area :access, placeholder: "例：○○駅から徒歩○分", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">駐車場情報</h5>
+          <%= f.text_area :parking_information, placeholder: "例：無料駐車場有（●台）、近くにコインパーキングあり", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">TEL</h5>
+          <%= f.text_field :telephone_number, placeholder: "施設の電話番号をご入力ください", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">HP</h5>
+          <%= f.text_field :homepage, placeholder: "店舗の公式ホームページのURLをご入力ください", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">定休日</h5>
+          <%= f.text_area :regular_holiday, placeholder: "例：第２火曜日（ない場合は「年中無休」）", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">営業時間</h5>
+          <%= f.text_area :opening_hours, placeholder: "例：平日　 10:00~23:00　土日祝 09:00~24:00", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">最低料金（大人）</h5>
+          <%= f.text_field :minimum_fee, placeholder: "入浴施設を利用できる最低料金をご入力ください", class: "form-control mb-3" %>
+          <h5 class="font-weight-bold">料金詳細</h5>
+          <%= f.text_area :fee_detail, placeholder: "例：大人　：平日1,100円　土日祝1,300円　子ども：平日300円　土日祝500円", class: "form-control mb-3" %>
+        </div>
+        <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
+        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
+        <%= f.fields_for 'gender_man_attributes', @bathhouse_gender_man do |m| %>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <%= m.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <%= m.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= sauna.label { sauna.check_box + sauna.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
+        <%= f.fields_for 'gender_woman_attributes', @bathhouse_gender_woman do |w| %>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <%= w.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row check_box">
+          <div class="col-10 px-0 mt-3 md-2 ml-4">
+            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <%= w.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= sauna.label { sauna.check_box + sauna.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
+        <%= f.fields_for 'gender_be_common_attributes', @bathhouse_gender_be_common do |c| %>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= other.label { other.check_box + other.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= building_facilities.label { building_facilities.check_box + building_facilities.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 ml-4">
+            <div class="d-flex">
+              <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
+              <p class="">（ローカルルール等）</p>
+            </div>
+            <%= f.text_area :special_note, placeholder: "例：フェイスタオル、バスタオルはフロントで何度でも交換可能　浴室にドリンク持込可", class: "form-control mb-3" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10 px-0 mt-3 md-2 mx-auto">
+            <%= f.submit '画像登録へ進む' ,class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

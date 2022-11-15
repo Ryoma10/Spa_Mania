@@ -123,24 +123,38 @@
       </div>
       <div class="thumb">
         <% if @bathhouse.bathhouse_image_main.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_main %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_main %>
+          </div>
         <% else %>
-          <%= image_tag 'no_image.png' %>
+          <div class="slick-preview">
+            <%= image_tag 'no_image.png' %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub1.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_sub1 %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_sub1 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub2.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_sub2 %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_sub2 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub3.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_sub3 %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_sub3 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub4.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_sub4 %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_sub4 %>
+          </div>
         <% end %>
         <% if @bathhouse.bathhouse_image_sub5.attached? %>
-          <%= image_tag @bathhouse.bathhouse_image_sub5 %>
+          <div class="slick-preview">
+            <%= image_tag @bathhouse.bathhouse_image_sub5 %>
+          </div>
         <% end %>
       </div>
     </div>

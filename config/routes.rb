@@ -38,7 +38,7 @@ Rails.application.routes.draw do
         get :reviews_index
         get :congestion_situation
         get :edit_image
-        get :edit_confirm
+        post :edit_confirm
         resources :review, only: [:show]
       end
       collection do
