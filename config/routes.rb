@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         get :edit_image
         post :edit_confirm
         resources :review, only: [:show]
+        get :destroy_image
       end
       collection do
         get :confirm

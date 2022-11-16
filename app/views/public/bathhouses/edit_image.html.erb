@@ -13,11 +13,11 @@
     </div>
   </div>
     <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
-    <li>施設情報入力</li>
+    <li>施設情報編集</li>
     <li>→</li>
-    <li class="bathhouse-border">画像登録</li>
+    <li class="bathhouse-border">画像編集</li>
     <li>→</li>
-    <li>登録確認</li>
+    <li>編集確認</li>
   </ul>
   <div class="row">
     <h3 class="font-weight-bold mb-3">■画像登録</h3>
@@ -30,21 +30,35 @@
             <label class="text-secondary">メイン画像</label><br>
             <%= f.file_field :bathhouse_image_main %>
           </div>
-          <div id="new-image_main"></div>
+          <div id="new-image_main">
+            <% if @bathhouse.bathhouse_image_main.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_main, class: "new-img", id: "old_main_img" %>
+            <% end %>
+          </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label class="text-secondary">画像１</label><br>
             <%= f.file_field :bathhouse_image_sub1 %>
           </div>
-          <div id="new-image_sub1"></div>
+          <div id="new-image_sub1">
+            <% if @bathhouse.bathhouse_image_sub1.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_sub1, class: "new-img", id: "old_sub1_img" %>
+            <% end %>
+          </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label class="text-secondary">画像２</label><br>
             <%= f.file_field :bathhouse_image_sub2 %>
           </div>
-          <div id="new-image_sub2"></div>
+          <div id="new-image_sub2">
+            <div id="new-image_sub1">
+            <% if @bathhouse.bathhouse_image_sub2.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_sub2, class: "new-img", id: "old_sub2_img" %>
+            <% end %>
+          </div>
+          </div>
         </div>
       </div>
       <div class="col-10 px-0 my-3 d-flex justify-content-between">
@@ -53,21 +67,39 @@
             <label class="text-secondary">画像３</label><br>
             <%= f.file_field :bathhouse_image_sub3 %>
           </div>
-          <div id="new-image_sub3"></div>
+          <div id="new-image_sub3">
+            <div id="new-image_sub1">
+            <% if @bathhouse.bathhouse_image_sub3.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_sub3, class: "new-img", id: "old_sub3_img" %>
+            <% end %>
+          </div>
+          </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label class="text-secondary">画像４</label><br>
             <%= f.file_field :bathhouse_image_sub4 %>
           </div>
-          <div id="new-image_sub4"></div>
+          <div id="new-image_sub4">
+            <div id="new-image_sub1">
+            <% if @bathhouse.bathhouse_image_sub4.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_sub4, class: "new-img", id: "old_sub4_img" %>
+            <% end %>
+          </div>
+          </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label class="text-secondary">画像５</label><br>
             <%= f.file_field :bathhouse_image_sub5 %>
           </div>
-          <div id="new-image_sub5"></div>
+          <div id="new-image_sub5">
+            <div id="new-image_sub1">
+            <% if @bathhouse.bathhouse_image_sub5.attached? %>
+              <%= image_tag @bathhouse.bathhouse_image_sub5, class: "new-img", id: "old_sub5_img" %>
+            <% end %>
+          </div>
+          </div>
         </div>
       </div>
         <%= f.hidden_field :prefecture_id, value: @bathhouse.prefecture_id %>

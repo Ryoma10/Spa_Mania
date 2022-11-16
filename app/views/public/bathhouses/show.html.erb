@@ -11,7 +11,10 @@
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
-        <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+        <div class="d-flex">
+          <%= link_to "画像削除", destroy_image_bathhouse_path, class: "text-danger ml-auto mr-1" %>
+          <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+        </div>
         <%= button_to "投稿する", new_review_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
         <%= button_to "お気に入りに登録", new_review_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
       </div>
@@ -158,167 +161,137 @@
         <% end %>
       </div>
     </div>
-  <div class="row">
-
-
-
-        <div class="ml-4">
-          <div class="d-flex">
-            <h5 class="font-weight-bold">施設名</h5>
-            <p class="bathhouse-null-false">※必須</p>
-          </div>
-          <p class="mb-3"><%= @bathhouse.name %></p>
-          <div class="d-flex">
-            <h5 class="font-weight-bold">都道府県</h5>
-            <p class="bathhouse-null-false">※必須</p>
-          </div>
-          <p class="mb-3"><%= Prefecture.find(@bathhouse.prefecture_id).name %></p>
-          <h5 class="font-weight-bold">郵便番号</h5>
-          <p class="mb-3"><%= @bathhouse.postal_code %></p>
-          <div class="d-flex">
-            <h5 class="font-weight-bold">住所１</h5>
-            <p class="bathhouse-null-false">※必須</p>
-          </div>
-          <p class="mb-3"><%= @bathhouse.address_city %></p>
-          <div class="d-flex">
-            <h5 class="font-weight-bold">住所２</h5>
-            <p class="bathhouse-null-false">※必須</p>
-          </div>
-          <p class="mb-3"><%= @bathhouse.address_town %></p>
-          <h5 class="font-weight-bold">住所３</h5>
-          <p class="mb-3"><%= @bathhouse.address_building %></p>
-          <h5 class="font-weight-bold">アクセス</h5>
-          <p class="mb-3"><%= safe_join(@bathhouse.access.split("\n"),tag(:br)) %></p>
-          <h5 class="font-weight-bold">駐車場情報</h5>
-          <p class="mb-3"><%= safe_join(@bathhouse.parking_information.split("\n"),tag(:br)) %></p>
-          <h5 class="font-weight-bold">TEL</h5>
-          <p class="mb-3"><%= @bathhouse.telephone_number %></p>
-          <h5 class="font-weight-bold">HP</h5>
-          <p class="mb-3"><%= @bathhouse.homepage %></p>
-          <h5 class="font-weight-bold">定休日</h5>
-          <p class="mb-3"><%= safe_join(@bathhouse.regular_holiday.split("\n"),tag(:br)) %></p>
-          <h5 class="font-weight-bold">営業時間</h5>
-          <p class="mb-3"><%= safe_join(@bathhouse.opening_hours.split("\n"),tag(:br)) %></p>
-          <h5 class="font-weight-bold">最低料金（大人）</h5>
-          <p class="mb-3"><%= @bathhouse.minimum_fee %></p>
-          <h5 class="font-weight-bold">料金詳細</h5>
-          <p class="mb-3"><%= safe_join(@bathhouse.fee_detail.split("\n"),tag(:br)) %></p>
-        </div>
+  </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
         <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
-          <div class="row">
-            <div class="col-10 px-0 mt-1 md-2 ml-4">
-              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <% @bathhouse_man_bath_facilities.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-10 px-0 mt-3 md-2 ml-4">
-              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-              <% @bathhouse_man_sauna.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-1 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+        <% @bathhouse_man_bath_facilities.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+        <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-3 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+        <% @bathhouse_man_sauna.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-1"></div>
+      <div class="col-10">
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
-          <div class="row">
-            <div class="col-10 px-0 mt-1 md-2 ml-4">
-              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <% @bathhouse_woman_bath_facilities.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <div class="row">
-          <div class="col-10 px-0 mt-3 md-2 ml-4">
-            <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-              <% @bathhouse_woman_sauna.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-1 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+        <% @bathhouse_woman_bath_facilities.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-3 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+        <% @bathhouse_woman_sauna.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
         <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
-          <div class="row">
-            <div class="col-10 px-0 mt-1 md-2 ml-4">
-              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-              <% @bathhouse_other.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-10 px-0 mt-3 md-2 ml-4">
-              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-              <% @bathhouse_building_facilities.each.with_index(1) do |feature, index| %>
-                <% if index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex justify-content-between">
-                      <span class="fontsize-14"><%= feature.name %>&emsp;</span>
-
-                    </li>
-                <% if index % 4 == 0 %>
-                  </ul>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        <div class="row">
-          <div class="col-10 px-0 mt-3 md-2 ml-4">
-            <div class="d-flex">
-              <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
-              <p class="">（ローカルルール等）</p>
-            </div>
-            <p class="mb-3"><%= safe_join(@bathhouse.special_note.split("\n"),tag(:br)) %></p>
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-1 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+        <% @bathhouse_other.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-3 md-2 ml-4">
+        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+        <% @bathhouse_building_facilities.each.with_index(1) do |feature, index| %>
+          <% if index % 4 == 1 %>
+            <ul class="row features-list">
+          <% end %>
+          <li class="col-3 d-flex justify-content-between">
+            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+          </li>
+          <% if index % 4 == 0 %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 px-0 mt-3 md-2 ml-4">
+        <div class="d-flex">
+          <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
+          <p class="">（ローカルルール等）</p>
         </div>
+        <p class="mb-3"><%= safe_join(@bathhouse.special_note.split("\n"),tag(:br)) %></p>
+      </div>
     </div>
   </div>
 </div>

@@ -276,6 +276,10 @@ class Public::BathhousesController < ApplicationController
 
   end
 
+  def destroy_image
+    @bathhouse = Bathhouse.find(params[:id])
+  end
+
   def review
   end
 

@@ -2,6 +2,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
   document.addEventListener('DOMContentLoaded', () => {
     const createImageHTML_main = (blob) => {
       const imageElement = document.getElementById('new-image_main');
+      const old_main_img = document.getElementById("old_main_img");
+      if (old_main_img){
+        old_main_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-main')
       blobImage.setAttribute('class', 'new-img')
@@ -22,6 +26,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
 
       const createImageHTML_sub1 = (blob) => {
       const imageElement = document.getElementById('new-image_sub1');
+      const old_sub1_img = document.getElementById("old_sub1_img");
+      if (old_sub1_img){
+        old_sub1_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-sub1')
       blobImage.setAttribute('class', 'new-img')
@@ -42,6 +50,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
 
       const createImageHTML_sub2 = (blob) => {
       const imageElement = document.getElementById('new-image_sub2');
+      const old_sub2_img = document.getElementById("old_sub2_img");
+      if (old_sub2_img){
+        old_sub2_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-sub2')
       blobImage.setAttribute('class', 'new-img')
@@ -62,6 +74,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
 
       const createImageHTML_sub3 = (blob) => {
       const imageElement = document.getElementById('new-image_sub3');
+      const old_sub3_img = document.getElementById("old_sub3_img");
+      if (old_sub3_img){
+        old_sub3_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-sub3')
       blobImage.setAttribute('class', 'new-img')
@@ -81,6 +97,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
 
       const createImageHTML_sub4 = (blob) => {
       const imageElement = document.getElementById('new-image_sub4');
+      const old_sub4_img = document.getElementById("old_sub4_img");
+      if (old_sub4_img){
+        old_sub4_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-sub4')
       blobImage.setAttribute('class', 'new-img')
@@ -101,6 +121,10 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
 
       const createImageHTML_sub5 = (blob) => {
       const imageElement = document.getElementById('new-image_sub5');
+      const old_sub5_img = document.getElementById("old_sub5_img");
+      if (old_sub5_img){
+        old_sub5_img.remove();
+      }
       const blobImage = document.createElement('img');
       blobImage.setAttribute('id', 'new-img-sub5')
       blobImage.setAttribute('class', 'new-img')

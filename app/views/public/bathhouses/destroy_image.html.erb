@@ -1,0 +1,90 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 px-0 my-3">
+      <h2>施設画像削除</h2>
+      <p class="">
+        アップロードする画像はご自身で撮影した写真か、<br>
+        使用許可をいただいている画像のみでお願いします。<br>
+        また、プライバシー保護の観点から、<br>
+        他者が写っていない画像のご使用をお願いいたします。<br>
+        不適切な画像をアップロードした場合、削除する場合がございます。<br>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 px-0 mt-3 md-2">
+        <div class="col-12 px-0 my-3 d-flex justify-content-between">
+          <div class="col-4">
+            <div class="form-group">
+              <label class="text-secondary">メイン画像</label><br>
+              <% if @bathhouse.bathhouse_image_main.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_main, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+            <label class="text-secondary">画像１</label><br>
+              <% if @bathhouse.bathhouse_image_sub1.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_sub1, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+            <label class="text-secondary">画像２</label><br>
+              <% if @bathhouse.bathhouse_image_sub2.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_sub2, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 px-0 my-3 d-flex justify-content-between">
+          <div class="col-4">
+            <div class="form-group">
+              <label class="text-secondary">画像３</label><br>
+              <% if @bathhouse.bathhouse_image_sub3.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_sub3, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label class="text-secondary">画像４</label><br>
+              <% if @bathhouse.bathhouse_image_sub4.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_sub4, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label class="text-secondary">画像５</label><br>
+              <% if @bathhouse.bathhouse_image_sub5.attached? %>
+                <%= image_tag @bathhouse.bathhouse_image_sub5, class: "new-img" %>
+
+              <% else %>
+                <%= image_tag 'no_image.png', class: "new-img" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

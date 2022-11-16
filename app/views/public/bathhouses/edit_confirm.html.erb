@@ -12,11 +12,11 @@
     </div>
   </div>
   <ul class="row bathhouse-list font-weight-bold justify-content-center border border-dark rounded-pill w-50 mx-auto mb-3 px-0">
-    <li>施設情報入力</li>
+    <li>施設情報編集</li>
     <li>→</li>
-    <li>画像登録</li>
+    <li>画像編集</li>
     <li>→</li>
-    <li class="bathhouse-border">登録確認</li>
+    <li class="bathhouse-border">編集確認</li>
   </ul>
   <div class="row">
     <div class="col-10 px-0 my-3">
@@ -184,6 +184,7 @@
                   <%= f.hidden_field :bathhouse_image_main, value: @confirm.bathhouse_image_main.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_main.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_main, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_main, value: @bathhouse.bathhouse_image_main.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
@@ -197,6 +198,7 @@
                   <%= f.hidden_field :bathhouse_image_sub1, value: @confirm.bathhouse_image_sub1.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_sub1.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_sub1, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_sub1, value: @bathhouse.bathhouse_image_sub1.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
@@ -210,6 +212,7 @@
                   <%= f.hidden_field :bathhouse_image_sub2, value: @confirm.bathhouse_image_sub2.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_sub2.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_sub2, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_sub2, value: @bathhouse.bathhouse_image_sub2.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
@@ -225,6 +228,7 @@
                   <%= f.hidden_field :bathhouse_image_sub3, value: @confirm.bathhouse_image_sub3.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_sub3.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_sub3, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_sub3, value: @bathhouse.bathhouse_image_sub3.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
@@ -238,6 +242,7 @@
                   <%= f.hidden_field :bathhouse_image_sub4, value: @confirm.bathhouse_image_sub4.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_sub4.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_sub4, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_sub4, value: @bathhouse.bathhouse_image_sub4.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
@@ -251,6 +256,7 @@
                   <%= f.hidden_field :bathhouse_image_sub5, value: @confirm.bathhouse_image_sub5.signed_id %>
                 <% elsif @bathhouse.bathhouse_image_sub5.attached? %>
                   <%= image_tag @bathhouse.bathhouse_image_sub5, class: "new-img" %>
+                  <%= f.hidden_field :bathhouse_image_sub5, value: @bathhouse.bathhouse_image_sub5.signed_id %>
                 <% else %>
                   <%= image_tag 'no_image.png', class: "new-img" %>
                 <% end %>
