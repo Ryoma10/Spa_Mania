@@ -1,0 +1,20 @@
+<p id="notice"></p>
+<div class="container border border-dark rounded-pill w-75">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h2 class="ml-2 mb-1">投稿</h2>
+      <%= form_with model: @bathhouse, url: image_bathhouses_path, method: :get do |f| %>
+        <table class="fontsize-20">
+          <tr>
+            <th>施設名：</th>
+            <td><%= @bathhouse.name %></td>
+          </tr>
+          <tr>
+            <th>訪問日&emsp;</th>
+            <td><%= f.date_field :sample_at %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

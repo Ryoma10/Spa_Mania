@@ -41,6 +41,7 @@ Rails.application.routes.draw do
         post :edit_confirm
         resources :review, only: [:show]
         get :destroy_image
+        get :review_new
       end
       collection do
         get :confirm
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
 
     resources :reports, only: [:new, :create]
 
-    resources :reviews, only: [:index, :new, :create, :destroy]
+    resources :reviews, only: [:index, :create, :destroy]
   end
 
   namespace :admin do

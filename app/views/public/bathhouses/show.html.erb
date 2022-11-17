@@ -11,12 +11,9 @@
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
-        <div class="d-flex">
-          <%= link_to "画像削除", destroy_image_bathhouse_path, class: "text-danger ml-auto mr-1" %>
-          <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
-        </div>
-        <%= button_to "投稿する", new_review_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
-        <%= button_to "お気に入りに登録", new_review_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
+        <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+        <%= button_to "投稿する", review_new_bathhouse_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
+        <%= button_to "お気に入りに登録", review_new_bathhouse_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
       </div>
     </div>
     <div class="col-1"></div>

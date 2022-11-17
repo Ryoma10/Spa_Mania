@@ -280,6 +280,10 @@ class Public::BathhousesController < ApplicationController
     @bathhouse = Bathhouse.find(params[:id])
   end
 
+  def review_new
+    @bathhouse = Bathhouse.find(params[:id])
+  end
+
   def review
   end
 
