@@ -3,7 +3,7 @@
   <div class="row mb-3">
     <div class="col-12">
       <h2 class="ml-2 mb-1">投稿</h2>
-      <%= form_with model: @bathhouse, url: image_bathhouses_path, method: :get do |f| %>
+      <%= form_with model: @review, url: reviews_path, method: :post do |f| %>
         <table class="fontsize-20">
           <tr>
             <th>施設名：</th>
@@ -13,7 +13,37 @@
             <th>訪問日&emsp;</th>
             <td><%= f.date_field :sample_at %></td>
           </tr>
+          <tr>
+            <th>満足度：</th>
+            <td>
+              <div id="post_raty"></div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                let raty_elem = document.querySelector('#post_raty');
+                raty_elem.innerHTML = ""
+                let option = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    scoreName: 'review[satisfaction]',
+                  };
+                raty(raty_elem,option);
+               });
+              </script>
+            </td>
+          </tr>
         </table>
+        <div class="my-2">
+          <label class="fontsize-20 font-weight-bold">投稿内容</label>
+          <%= f.text_area :body ,  class: 'form-control',size: "100x10"%>
+        </div>
+        <div class="mb-2">
+          <label class="fontsize-20 font-weight-bold">画像投稿</label></br>
+          <%= f.file_field :bathhouse_image_sub1 %>
+        </div>
+        <div>
+          <p class="fontsize-20 font-weight-bold m-0">混雑状況(任意)</p>
+          <p class="fontsize-20">お風呂</p>
+        </div>
       <% end %>
     </div>
   </div>

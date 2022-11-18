@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_160407) do
+ActiveRecord::Schema.define(version: 2022_11_18_130511) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(version: 2022_11_17_160407) do
     t.string "satisfaction"
     t.text "body", null: false
     t.string "time_zone_bath"
-    t.integer "congestion_situation_men"
-    t.integer "congestion_situation_women"
+    t.integer "congestion_situation_man"
+    t.integer "congestion_situation_woman"
     t.string "time_zone_rest_area"
     t.integer "congestion_situation_rest_area"
     t.datetime "created_at", precision: 6, null: false

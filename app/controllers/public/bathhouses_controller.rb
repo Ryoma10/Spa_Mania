@@ -282,6 +282,7 @@ class Public::BathhousesController < ApplicationController
 
   def review_new
     @bathhouse = Bathhouse.find(params[:id])
+    @review = Review.new
   end
 
   def review
