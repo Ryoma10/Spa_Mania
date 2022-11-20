@@ -39,7 +39,6 @@ Rails.application.routes.draw do
         get :congestion_situation
         get :edit_image
         post :edit_confirm
-        resources :review, only: [:show]
         get :destroy_image
         get :review_new
       end
@@ -54,7 +53,7 @@ Rails.application.routes.draw do
 
     resources :reports, only: [:new, :create]
 
-    resources :reviews, only: [:index, :create, :destroy]
+    resources :reviews, only: [:index, :show, :create, :destroy]
   end
 
   namespace :admin do

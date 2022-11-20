@@ -1,5 +1,11 @@
 ja:
   enums:
+    congestion:
+      congestion_situation:
+        empty: "空いている"
+        normal: "普通"
+        crowded: "混んでいる"
+        very_crowded: "とても混んでいる"
     feature:
       category:
         bath_facilities: "お風呂設備"

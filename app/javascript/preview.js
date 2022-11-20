@@ -143,3 +143,29 @@ if (document.URL.match(/image/) || document.URL.match(/confirm/)) {
     });
   });
 }
+
+
+
+if (document.URL.match(/review_new/)) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const createImageHTML_image = (blob) => {
+      const imageElement = document.getElementById('new-image');
+
+      const blobImage = document.createElement('img');
+      blobImage.setAttribute('id', 'new-img')
+      blobImage.setAttribute('class', 'new-img')
+      blobImage.setAttribute('src', blob);
+      imageElement.appendChild(blobImage);
+    };
+
+    document.getElementById('review_image').addEventListener('change', (e) =>{
+      const imageContent = document.getElementById('new-img');
+      if (imageContent){
+        imageContent.remove();
+      }
+      const file = e.target.files[0];
+      const blob = window.URL.createObjectURL(file);
+      createImageHTML_image(blob);
+    });
+  });
+}

@@ -15,7 +15,6 @@ class Public::BathhousesController < ApplicationController
     @bathhouse = Bathhouse.new(bathhouse_params)
     #@gender_man = Gender.new()
     #@gender_man.sex = 'man'
-    #byebug
     @gender_man_fetures = Feature.find(params[:bathhouse][:gender_man_attributes][:feature_ids].compact_blank)
 
     #@gender_woman = @bathhouse.genders.new(bathhouse_params[:gender_woman_attributes])
@@ -158,6 +157,7 @@ class Public::BathhousesController < ApplicationController
   end
 
   def reviews_index
+    
   end
 
   def congestion_situation

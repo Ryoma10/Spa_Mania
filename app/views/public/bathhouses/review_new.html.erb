@@ -11,7 +11,7 @@
           </tr>
           <tr>
             <th>訪問日&emsp;</th>
-            <td><%= f.date_field :sample_at %></td>
+            <td><%= f.date_field :visiting_date %></td>
           </tr>
           <tr>
             <th>満足度：</th>
@@ -38,11 +38,115 @@
         </div>
         <div class="mb-2">
           <label class="fontsize-20 font-weight-bold">画像投稿</label></br>
-          <%= f.file_field :bathhouse_image_sub1 %>
+          <%= f.file_field :image %>
+        </div>
+        <div id="new-image"></div>
+        <div class="my-3">
+          <%= f.fields_for 'bath_congestion_attributes', Congestion.new do |b| %>
+            <p class="fontsize-20 font-weight-bold m-0">混雑状況(任意)</p>
+            <p class="fontsize-20 m-0">お風呂</p>
+            <div>
+              <label class="">利用時間帯</label>
+              <%= b.select :time_zone, [['6:00~8:00', 1], ['8:00~10:00', 2], ['10:00~12:00', 3], ['12:00~14:00', 4], ['14:00~16:00', 5], ['16:00~18:00', 6], ['18:00~20:00', 7], ['20:00~22:00', 8], ['22:00~24:00', 9], ['0:00~2:00', 10], ['2:00~4:00', 11], ['4:00~6:00', 12]], include_blank: "選択してください" %>
+            </div>
+            <div>
+              <%= b.radio_button :classification, :man, checked: true %>
+              <%= b.label :classification, "男湯", {value: 0, style: "display: inline-block;"} %>
+              <%= b.radio_button :classification, :woman, class: "ml-3" %>
+              <%= b.label :classification, "女湯", {value: 1, style: "display: inline-block;"} %>
+            </div>
+            <div>
+              <%= b.radio_button :congestion_situation, :empty, class: "mr-2" %>
+              <%= b.label :congestion_situation, Congestion.congestion_situations_i18n[:empty], {value: :empty} %></br>
+              <%= b.radio_button :congestion_situation, :normal, class: "mr-2" %>
+              <%= b.label :congestion_situation, Congestion.congestion_situations_i18n[:normal], {value: :normal} %></br>
+              <%= b.radio_button :congestion_situation, :crowded, class: "mr-2" %>
+              <%= b.label :congestion_situation, Congestion.congestion_situations_i18n[:crowded], {value: :crowded} %></br>
+              <%= b.radio_button :congestion_situation, :very_crowded, class: "mr-2" %>
+              <%= b.label :congestion_situation, Congestion.congestion_situations_i18n[:very_crowded], {value: :very_crowded} %></br>
+            </div>
+          <% end %>
+          <p class="m-0">※混雑状況目安</p>
+          <table class="fontsize-14">
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:empty] %>&emsp;</td>
+              <td>
+                ほとんど人がいない
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:normal] %>&emsp;</td>
+              <td>
+                人はいるが、ほぼすべてのお風呂に待たずに入れる
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:crowded] %>&emsp;</td>
+              <td>
+                人がそれなりにいて、待たなきゃ入れないお風呂が複数ある
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:very_crowded] %>&emsp;</td>
+              <td>
+                シャワー等がほぼ満席であり、入れるお風呂も限られてしまっている
+              </td>
+            </tr>
+          </table>
         </div>
         <div>
-          <p class="fontsize-20 font-weight-bold m-0">混雑状況(任意)</p>
-          <p class="fontsize-20">お風呂</p>
+          <%= f.fields_for 'rest_area_congestion_attributes', Congestion.new do |r| %>
+            <p class="fontsize-20 m-0">休憩スペース</p>
+            <%= r.hidden_field :classification, value: :rest_area %>
+            <div>
+              <label class="">利用時間帯</label>
+              <%= r.select :time_zone, [['6:00~8:00', 1], ['8:00~10:00', 2], ['10:00~12:00', 3], ['12:00~14:00', 4], ['14:00~16:00', 5], ['16:00~18:00', 6], ['18:00~20:00', 7], ['20:00~22:00', 8], ['22:00~24:00', 9], ['0:00~2:00', 10], ['2:00~4:00', 11], ['4:00~6:00', 12]], include_blank: "選択してください" %>
+              <span class="fontsize-14 ml-3">
+                ※長時間滞在された場合は、一番混んでいた時間帯をご入力ください
+              </span>
+            </div>
+            <div>
+              <%= r.radio_button :congestion_situation, :empty, class: "mr-2" %>
+              <%= r.label :congestion_situation, Congestion.congestion_situations_i18n[:empty], {value: :empty} %></br>
+              <%= r.radio_button :congestion_situation, :normal, class: "mr-2" %>
+              <%= r.label :congestion_situation, Congestion.congestion_situations_i18n[:normal], {value: :normal} %></br>
+              <%= r.radio_button :congestion_situation, :crowded, class: "mr-2" %>
+              <%= r.label :congestion_situation, Congestion.congestion_situations_i18n[:crowded], {value: :crowded} %></br>
+              <%= r.radio_button :congestion_situation, :very_crowded, class: "mr-2" %>
+              <%= r.label :congestion_situation, Congestion.congestion_situations_i18n[:very_crowded], {value: :very_crowded} %></br>
+            </div>
+          <% end %>
+          <p class="m-0 ">※混雑状況目安</p>
+          <table class="fontsize-14">
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:empty] %>&emsp;</td>
+              <td>
+                ほとんど人がいない
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:normal] %>&emsp;</td>
+              <td>
+                ５割～６割程度の席が利用されている
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:crowded] %>&emsp;</td>
+              <td>
+                ７割～８割程度の席が利用されている
+              </td>
+            </tr>
+            <tr>
+              <td><%= Congestion.congestion_situations_i18n[:very_crowded] %>&emsp;</td>
+              <td>
+                ほぼ満席状態
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="text-center mb-3">
+          <%= f.hidden_field :bathhouse_id, value: @bathhouse.id %>
+          <%= f.submit '投稿する' ,class: 'btn btn-success' %>
         </div>
       <% end %>
     </div>
