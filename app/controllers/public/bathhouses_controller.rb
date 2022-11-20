@@ -157,7 +157,8 @@ class Public::BathhousesController < ApplicationController
   end
 
   def reviews_index
-    
+    @bathhouse = Bathhouse.find(params[:id])
+    @review = Review.where(bathhouse_id: params[:id])
   end
 
   def congestion_situation
