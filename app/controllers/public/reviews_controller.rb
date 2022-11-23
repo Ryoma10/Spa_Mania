@@ -16,6 +16,13 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find(params[:id])
+    @bathhouse = Bathhouse.find(@review.bathhouse_id)
+    @comment = Comment.new
+    @comments = Comment.where(review_id: params[:id])
+  end
+
   def index
   end
 

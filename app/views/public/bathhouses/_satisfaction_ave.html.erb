@@ -1,0 +1,15 @@
+<div id="satisfaction_ave_<%= bathhouse.id %>"></div>
+<script>
+$(document).on('turbolinks:load', function() {
+    let raty_<%= bathhouse.id %> = document.querySelector('#satisfaction_<%= bathhouse.id %>');
+    satisfaction_<%= bathhouse.id %>.innerHTML = ""
+    let option_<%= bathhouse.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= Review.group(:bathhouse_id).average(:satisfaction) %>",
+        readOnly: true,
+      };
+    raty(raty_<%= bathhouse.id %> ,option_<%= bathhouse.id %>);
+});
+</script>

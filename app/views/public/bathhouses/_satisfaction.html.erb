@@ -1,5 +1,6 @@
 <div id="satisfaction_<%= review.id %>"></div>
 <script>
+
 $(document).on('turbolinks:load', function() {
     let raty_<%= review.id %> = document.querySelector('#satisfaction_<%= review.id %>');
     satisfaction_<%= review.id %>.innerHTML = ""

@@ -61,3 +61,4 @@ gem 'net-smtp'
 gem 'pry-rails'
 gem "enum_help"
 gem 'kaminari','~> 1.2.1'
+gem 'bootstrap4-kaminari-views'
