@@ -65,6 +65,11 @@
               <%= image_tag @review.image, class: "review-show-img" %>
             <% end %>
           </div>
+          <% if @review.user_id == current_user.id %>
+            <div class="text-right">
+              <%= link_to "削除する", review_path(params[:id]), method: :delete, class: "mr-2 text-danger", data: { confirm: '投稿を削除しますか？' } %>
+            </div>
+          <% end %>
         </div>
         <% @comments.each do |comment| %>
           <div class="border border-dark">
@@ -80,22 +85,31 @@
                     <%= comment.user.name %>
                   </div>
               <% end %>
+                <div class="text-secondary">
+                  <%= comment.created_at.strftime('%Y-%m-%d') %>
+                </div>
               </div>
             </div>
             <div class="mb-3 ml-5">
-                <%= safe_join(comment.body.split("\n"),tag(:br)) %>
+              <%= safe_join(comment.body.split("\n"),tag(:br)) %>
             </div>
+            <% if comment.user_id == current_user.id %>
+              <div class="text-right">
+                <%= link_to "削除する", comment_path(comment.id), method: :delete, class: "mr-2 text-danger", data: { confirm: 'コメントを削除しますか？' } %>
+              </div>
+            <% end %>
           </div>
         <% end %>
         <%= form_with model: @comment, url: comments_path, method: :post do |f| %>
           <label class="mt-4">コメントを投稿する</label>
           <%= f.text_area :body, class: "form-control comment-area mb-3" %>
           <div class="text-center mb-3">
+            <%= f.hidden_field :review_id, value: @review.id %>
             <%= f.submit 'コメントを投稿' ,class: 'btn btn-success' %>
           </div>
         <% end %>
         <div class="text-center mb-3">
-          <%= button_to "施設情報に戻る", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark mb-2" %>
+          <%= button_to "施設情報に戻る", reviews_index_bathhouse_path(@bathhouse.id), method: :get, class: "btn btn-outline-dark mb-2" %>
         </div>
       </div>
     </div>

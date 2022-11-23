@@ -27,6 +27,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    @bathhouse = Bathhouse.find(@review.bathhouse_id)
+    @review.destroy
+    redirect_to reviews_index_bathhouse_path(@bathhouse.id)
   end
 
 

@@ -28,7 +28,7 @@
     <div class="col-10 px-0 my-3">
       <h3 class="font-weight-bold mb-1">■みんなの投稿</h3>
       <div class="">
-        <% @review.reverse_each do |review| %>
+        <% @review.each do |review| %>
           <div class="border border-dark">
             <div class="d-flex">
               <%= link_to user_path(review.user_id), class: "link-none" do %>
