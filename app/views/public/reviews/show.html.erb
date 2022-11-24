@@ -1,13 +1,19 @@
 <p id="notice"></p>
-<div class="container">
+<div class="container" id="bathhouse_<%= params[:id] %>">
   <div class="row mb-3">
     <div class="col-1"></div>
     <div class="col-5 px-0">
       <h5 class="m-0 text-secondary font-weight-bold"><%= Prefecture.find(@bathhouse.prefecture_id).name + @bathhouse.address_city %></h5>
       <h1 class="m-0 font-weight-bold mb-2"><%= @bathhouse.name %></h1>
-      <h4 class="m-0 font-weight-bold">
-        平均満足度　★★★★☆　4.5/n件
-      </h4>
+      <div class="d-flex">
+        <h4 class="m-0 font-weight-bold">平均満足度：</h4>
+        <div id="satisfaction_ave_<%= @bathhouse.id %>"></div>
+        <h4 class="m-0 font-weight-bold">
+          &nbsp;<%= @review_satisfaction.average(:satisfaction).to_f.round(1) %>
+          /
+          <%= @review_satisfaction.count %>件
+        </h4>
+      </div>
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
@@ -27,7 +33,7 @@
     <div class="col-1"></div>
     <div class="col-10 px-0 my-3">
       <h3 class="font-weight-bold mb-1">■みんなの投稿</h3>
-      <div class="">
+      <div id="review_<%= @review[:id] %>">
         <div class="border border-dark">
           <div class="d-flex">
             <%= link_to user_path(@review.user_id), class: "link-none" do %>
@@ -48,7 +54,7 @@
             <div class="ml-auto mr-2 mt-2 d-flex">
               <% if @review.satisfaction.to_i > 0 %>
                 <span>満足度：</span>
-                <%= render 'public/bathhouses/satisfaction', review: @review %>
+                <div id="satisfaction_<%= @review.id %>"></div>
               <% end %>
             </div>
           </div>
@@ -115,3 +121,43 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).on('turbolinks:load', function() {
+if ($('#review_<%= @review[:id] %>').length) {
+   <% if @review.satisfaction.to_i > 0 %>
+    let raty_<%= @review.id %> = document.querySelector('#satisfaction_<%= @review.id %>');
+    //var elem = document.getElementById(('satisfaction_<%= @review.id %>')
+    $("#satisfaction_<%= @review.id %>").empty();
+    //satisfaction_<%= @review.id %>.innerHTML = ""
+    let option_<%= @review.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        score: "<%= @review.satisfaction %>",
+        readOnly: true,
+      };
+    raty(raty_<%= @review.id %> ,option_<%= @review.id %>);
+  <% end %>
+}
+});
+</script>
+
+<script>
+$(document).on('turbolinks:load', function() {
+  if ($('#bathhouse_<%= params[:id] %>').length) {
+    console.log('test!');
+    let raty_<%= @bathhouse.id %> = document.querySelector('#satisfaction_ave_<%= @bathhouse.id %>');
+    $("#satisfaction_ave_<%= @bathhouse.id %>").empty();
+    //satisfaction_<%= @bathhouse.id %>.innerHTML = "";
+    let option_<%= @bathhouse.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= @review_satisfaction.average(:satisfaction).to_f.round(1) %>",
+        half: true,
+        readOnly: true,
+      };
+    raty(raty_<%= @bathhouse.id %> ,option_<%= @bathhouse.id %>);
+}
+});
+</script>

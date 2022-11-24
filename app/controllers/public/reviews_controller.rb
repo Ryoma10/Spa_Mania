@@ -21,6 +21,7 @@ class Public::ReviewsController < ApplicationController
     @bathhouse = Bathhouse.find(@review.bathhouse_id)
     @comment = Comment.new
     @comments = Comment.where(review_id: params[:id])
+    @review_satisfaction = Review.where(bathhouse_id: @bathhouse.id).where("satisfaction > ?", 0)
   end
 
   def index

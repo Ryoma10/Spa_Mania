@@ -1,13 +1,19 @@
 <p id="notice"></p>
-<div class="container">
+<div class="container" id="bathhouse_<%= params[:id] %>">
   <div class="row mb-3">
     <div class="col-1"></div>
     <div class="col-5 px-0">
       <h5 class="m-0 text-secondary font-weight-bold"><%= Prefecture.find(@bathhouse.prefecture_id).name + @bathhouse.address_city %></h5>
       <h1 class="m-0 font-weight-bold mb-2"><%= @bathhouse.name %></h1>
-      <h4 class="m-0 font-weight-bold">
-        平均満足度　★★★★☆　4.5/n件
-      </h4>
+      <div class="d-flex">
+        <h4 class="m-0 font-weight-bold">平均満足度：</h4>
+        <div id="satisfaction_ave_<%= @bathhouse.id %>"></div>
+        <h4 class="m-0 font-weight-bold">
+          &nbsp;<%= @review_satisfaction.average(:satisfaction).to_f.round(1) %>
+          /
+          <%= @review_satisfaction.count %>件
+        </h4>
+      </div>
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
@@ -292,3 +298,23 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).on('turbolinks:load', function() {
+  if ($('#bathhouse_<%= params[:id] %>').length) {
+    console.log('test!');
+    let raty_<%= @bathhouse.id %> = document.querySelector('#satisfaction_ave_<%= @bathhouse.id %>');
+    $("#satisfaction_ave_<%= @bathhouse.id %>").empty();
+    //satisfaction_<%= @bathhouse.id %>.innerHTML = "";
+    let option_<%= @bathhouse.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= @review_satisfaction.average(:satisfaction).to_f.round(1) %>",
+        half: true,
+        readOnly: true,
+      };
+    raty(raty_<%= @bathhouse.id %> ,option_<%= @bathhouse.id %>);
+}
+});
+</script>

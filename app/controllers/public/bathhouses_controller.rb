@@ -150,6 +150,8 @@ class Public::BathhousesController < ApplicationController
     @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna.pluck(:feature_id))
     @bathhouse_other = Feature.where(id: gender_other.pluck(:feature_id))
     @bathhouse_building_facilities = Feature.where(id: gender_building_facilities.pluck(:feature_id))
+
+    @review_satisfaction = Review.where(bathhouse_id: @bathhouse.id).where("satisfaction > ?", 0)
   end
 
   def index
@@ -159,9 +161,15 @@ class Public::BathhousesController < ApplicationController
   def reviews_index
     @bathhouse = Bathhouse.find(params[:id])
     @review = Review.where(bathhouse_id: params[:id]).reverse_order.page params[:page]
+    @review_satisfaction = Review.where(bathhouse_id: @bathhouse.id).where("satisfaction > ?", 0)
   end
 
   def congestion_situation
+    @bathhouse = Bathhouse.find(params[:id])
+    @review = Review.where(bathhouse_id: params[:id])
+    @review_satisfaction = Review.where(bathhouse_id: @bathhouse.id).where("satisfaction > ?", 0)
+    @review_congestion = Congestion.where(review_id: @review.ids)
+    
   end
 
   def edit
