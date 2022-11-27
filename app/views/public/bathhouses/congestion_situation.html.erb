@@ -31,269 +31,29 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-4 px-0 my-3">
-      <h3 class="font-weight-bold mb-1">■基本情報</h3>
-      <table border="1">
-        <tr>
-          <th>住所</th>
-          <td>
-            <%= Prefecture.find(@bathhouse.prefecture_id).name %>&nbsp;
-            <%= @bathhouse.address_city %>&nbsp;
-            <%= @bathhouse.address_town %>
-            <% if @bathhouse.address_building.present? %>
-              </br>
-              <%= @bathhouse.address_building %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th>アクセス</th>
-          <td>
-            <%= safe_join(@bathhouse.access.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-        <tr>
-          <th>TEL</th>
-          <td>
-            <%= @bathhouse.telephone_number %>
-          </td>
-        </tr>
-        <tr>
-          <th>営業時間</th>
-          <td>
-            <%= safe_join(@bathhouse.opening_hours.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-        <tr>
-          <th>定休日</th>
-          <td>
-            <%= safe_join(@bathhouse.regular_holiday.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-        <tr>
-          <th>HP</th>
-          <td>
-            <%= @bathhouse.homepage %>
-          </td>
-        </tr>
-        <tr>
-          <th>駐車場</br>情報</th>
-          <td>
-            <%= safe_join(@bathhouse.parking_information.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-        <tr>
-          <th>料金詳細</th>
-          <td>
-            <%= safe_join(@bathhouse.fee_detail.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-6 px-0 my-5">
-      <div class="slider">
-        <% if @bathhouse.bathhouse_image_main.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_main %>
-          </div>
-        <% else %>
-          <div class="slick-image">
-            <%= image_tag 'no_image.png' %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub1.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_sub1 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub2.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_sub2 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub3.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_sub3 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub4.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_sub4 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub5.attached? %>
-          <div class="slick-image">
-            <%= image_tag @bathhouse.bathhouse_image_sub5 %>
-          </div>
-        <% end %>
-      </div>
-      <div class="thumb">
-        <% if @bathhouse.bathhouse_image_main.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_main %>
-          </div>
-        <% else %>
-          <div class="slick-preview">
-            <%= image_tag 'no_image.png' %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub1.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_sub1 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub2.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_sub2 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub3.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_sub3 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub4.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_sub4 %>
-          </div>
-        <% end %>
-        <% if @bathhouse.bathhouse_image_sub5.attached? %>
-          <div class="slick-preview">
-            <%= image_tag @bathhouse.bathhouse_image_sub5 %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <h3 class="font-weight-bold mt-5 mb-3">■浴場情報</h3>
-        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-        <% @bathhouse_man_bath_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-        <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-        <% @bathhouse_man_sauna.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-        <% @bathhouse_woman_bath_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-        <% @bathhouse_woman_sauna.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-        <% @bathhouse_other.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-        <% @bathhouse_building_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <div class="d-flex">
-          <h5 class="font-weight-bold">施設詳細（特記事項）</h5>
-          <p class="">（ローカルルール等）</p>
+    <div class="col-10 px-0 my-3">
+      <h3 class="font-weight-bold mb-1">■混雑傾向</h3>
+      <div class="row">
+        <div class="col-6">
+          <h5 class="bathhouse-gender text-center">■男湯</h5>
+          <teble>
+            <thead>
+              <tr>
+                <th>時間帯</th>
+                <th><%= Congestion.congestion_situations_i18n[:empty] %></th>
+                <th><%= Congestion.congestion_situations_i18n[:normal] %></th>
+                <th><%= Congestion.congestion_situations_i18n[:crowded] %></th>
+                <th><%= Congestion.congestion_situations_i18n[:very_crowded] %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>06:00~08:00</td>
+              </tr>
+            </tbody>
+          </teble>
+
         </div>
-        <p class="mb-3"><%= safe_join(@bathhouse.special_note.split("\n"),tag(:br)) %></p>
       </div>
     </div>
   </div>
