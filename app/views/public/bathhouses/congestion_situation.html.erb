@@ -24,9 +24,9 @@
     </div>
     <div class="col-1"></div>
     <ul class="row bathhouse-list font-weight-bold justify-content-center w-100 mx-auto mb-3 px-0">
-      <li class="bathhouse-border fontsize-24 mx-5">施設情報</li>
+      <li class="fontsize-24 mx-5"><%= link_to "施設情報", bathhouse_path(params[:id]), class: "link-none" %></li>
       <li class="fontsize-24 mx-5"><%= link_to "みんなの投稿", reviews_index_bathhouse_path(params[:id]), class: "link-none" %></li>
-      <li class="fontsize-24 mx-5"><%= link_to "混雑情報", congestion_situation_bathhouse_path(params[:id]), class: "link-none" %></li>
+      <li class="bathhouse-border fontsize-24 mx-5">混雑情報</li>
     </ul>
   </div>
   <div class="row">
@@ -34,25 +34,1220 @@
     <div class="col-10 px-0 my-3">
       <h3 class="font-weight-bold mb-1">■混雑傾向</h3>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12">
           <h5 class="bathhouse-gender text-center">■男湯</h5>
-          <teble>
+          <table class="table table-striped">
             <thead>
-              <tr>
-                <th>時間帯</th>
-                <th><%= Congestion.congestion_situations_i18n[:empty] %></th>
-                <th><%= Congestion.congestion_situations_i18n[:normal] %></th>
-                <th><%= Congestion.congestion_situations_i18n[:crowded] %></th>
-                <th><%= Congestion.congestion_situations_i18n[:very_crowded] %></th>
+              <tr class="text-center">
+                <th class="congestion-head">時間帯</th>
+                <th class="congestion-head"><%= Congestion.congestion_situations_i18n[:empty] %></th>
+                <th class="congestion-head"><%= Congestion.congestion_situations_i18n[:normal] %></th>
+                <th class="congestion-head"><%= Congestion.congestion_situations_i18n[:crowded] %></th>
+                <th class="congestion-head"><%= Congestion.congestion_situations_i18n[:very_crowded] %></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>06:00~08:00</td>
+                <td class="text-center">06:00~08:00</td>
+                <% if @congestion_weekday_man_06to08_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse2"><%= @congestion_weekday_man_06to08_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_06to08_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_06to08_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse3"><%= @congestion_weekday_man_06to08_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_06to08_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_06to08_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse4"><%= @congestion_weekday_man_06to08_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_06to08_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_06to08_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse5"><%= @congestion_weekday_man_06to08_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_06to08_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">08:00~10:00</td>
+                <% if @congestion_weekday_man_08to10_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse6"><%= @congestion_weekday_man_08to10_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse6" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_08to10_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_08to10_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse7"><%= @congestion_weekday_man_08to10_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse7" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_08to10_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_08to10_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse8"><%= @congestion_weekday_man_08to10_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse8" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_08to10_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_08to10_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse9"><%= @congestion_weekday_man_08to10_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse9" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_08to10_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">10:00~12:00</td>
+                <% if @congestion_weekday_man_10to12_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse10"><%= @congestion_weekday_man_10to12_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse10" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_10to12_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_10to12_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse11"><%= @congestion_weekday_man_10to12_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse11" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_10to12_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_10to12_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse12"><%= @congestion_weekday_man_10to12_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse12" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_10to12_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_10to12_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse13"><%= @congestion_weekday_man_10to12_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse13" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_10to12_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">12:00~14:00</td>
+                <% if @congestion_weekday_man_12to14_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse14"><%= @congestion_weekday_man_12to14_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse14" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_12to14_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_12to14_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse15"><%= @congestion_weekday_man_12to14_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse15" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_12to14_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_12to14_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse16"><%= @congestion_weekday_man_12to14_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse16" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_12to14_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_12to14_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse17"><%= @congestion_weekday_man_12to14_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse17" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_12to14_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">14:00~16:00</td>
+                <% if @congestion_weekday_man_14to16_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse18"><%= @congestion_weekday_man_14to16_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse18" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_14to16_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_14to16_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse19"><%= @congestion_weekday_man_14to16_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse19" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_14to16_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_14to16_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse20"><%= @congestion_weekday_man_14to16_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse20" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_14to16_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_14to16_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse21"><%= @congestion_weekday_man_14to16_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse21" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_14to16_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">16:00~18:00</td>
+                <% if @congestion_weekday_man_16to18_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse22"><%= @congestion_weekday_man_16to18_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse22" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_16to18_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_16to18_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse23"><%= @congestion_weekday_man_16to18_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse23" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_16to18_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_16to18_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse24"><%= @congestion_weekday_man_16to18_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse24" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_16to18_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_16to18_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse25"><%= @congestion_weekday_man_16to18_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse25" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_16to18_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">18:00~20:00</td>
+                <% if @congestion_weekday_man_18to20_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse26"><%= @congestion_weekday_man_18to20_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse26" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_18to20_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_18to20_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse27"><%= @congestion_weekday_man_18to20_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse27" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_18to20_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_18to20_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse28"><%= @congestion_weekday_man_18to20_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse28" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_18to20_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_18to20_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse29"><%= @congestion_weekday_man_18to20_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse29" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_18to20_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">20:00~22:00</td>
+                <% if @congestion_weekday_man_20to22_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse30"><%= @congestion_weekday_man_20to22_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse30" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_20to22_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_20to22_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse31"><%= @congestion_weekday_man_20to22_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse31" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_20to22_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_20to22_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse32"><%= @congestion_weekday_man_20to22_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse32" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_20to22_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_20to22_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse33"><%= @congestion_weekday_man_20to22_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse33" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_20to22_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">22:00~24:00</td>
+                <% if @congestion_weekday_man_22to24_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse34"><%= @congestion_weekday_man_22to24_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse34" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_22to24_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_22to24_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse35"><%= @congestion_weekday_man_22to24_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse35" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_22to24_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_22to24_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse36"><%= @congestion_weekday_man_22to24_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse36" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_22to24_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_22to24_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse37"><%= @congestion_weekday_man_22to24_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse37" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_22to24_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">00:00~02:00</td>
+                <% if @congestion_weekday_man_00to02_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse38"><%= @congestion_weekday_man_00to02_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse38" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_00to02_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_00to02_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse39"><%= @congestion_weekday_man_00to02_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse39" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_00to02_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_00to02_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse40"><%= @congestion_weekday_man_00to02_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse40" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_00to02_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_00to02_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse41"><%= @congestion_weekday_man_00to02_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse41" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_00to02_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">02:00~04:00</td>
+                <% if @congestion_weekday_man_02to04_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse42"><%= @congestion_weekday_man_02to04_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse42" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_02to04_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_02to04_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse43"><%= @congestion_weekday_man_02to04_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse43" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_02to04_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_02to04_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse44"><%= @congestion_weekday_man_02to04_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse44" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_02to04_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_02to04_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse45"><%= @congestion_weekday_man_02to04_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse45" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_02to04_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+
+              <tr>
+                <td class="text-center">04:00~06:00</td>
+                <% if @congestion_weekday_man_04to06_empty.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse46"><%= @congestion_weekday_man_04to06_empty.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse46" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_04to06_empty.each do |congestion_empty| %>
+                              <li class="list-group-item">
+                                <%= congestion_empty.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_04to06_normal.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse47"><%= @congestion_weekday_man_04to06_normal.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse47" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_04to06_normal.each do |congestion_normal| %>
+                              <li class="list-group-item">
+                                <%= congestion_normal.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_04to06_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse48"><%= @congestion_weekday_man_04to06_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse48" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_04to06_crowded.each do |congestion_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+                <% if @congestion_weekday_man_04to06_very_crowded.blank? %>
+                  <td class="text-center">0件</td>
+                <% else %>
+                  <td>
+                    <div class="panel-group">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="panel-title text-center">
+                            <a data-toggle="collapse" href="#collapse49"><%= @congestion_weekday_man_04to06_very_crowded.count %>件</a>
+                          </div>
+                        </div>
+                        <div id="collapse49" class="panel-collapse collapse">
+                          <ul class="list-group">
+                            <% @congestion_weekday_man_04to06_very_crowded.each do |congestion_very_crowded| %>
+                              <li class="list-group-item">
+                                <%= congestion_very_crowded.review.visiting_date %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
               </tr>
             </tbody>
-          </teble>
-
+          </table>
         </div>
       </div>
     </div>
