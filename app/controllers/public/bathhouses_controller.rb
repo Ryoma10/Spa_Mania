@@ -183,7 +183,7 @@ class Public::BathhousesController < ApplicationController
     end
     @congestion_weekend_man = Congestion.where(id: @congestion_weekend).where(classification: 0)
     @congestion_weekend_woman = Congestion.where(id: @congestion_weekend).where(classification: 1)
-    @congestion_weekend_rest_area = Congestion.where(id: @congestion_weekend).where(classification: 3)
+    @congestion_weekend_rest_area = Congestion.where(id: @congestion_weekend).where(classification: 2)
 
     @congestion_weekend_man_06to08 = Congestion.where(id: @congestion_weekend_man).where(time_zone: 1)
     @congestion_weekend_man_06to08_empty = Congestion.where(id: @congestion_weekend_man_06to08).where(congestion_situation: 0)
@@ -410,7 +410,7 @@ class Public::BathhousesController < ApplicationController
 # ここから
     @congestion_weekday_man = Congestion.where(id: @congestion_weekday).where(classification: 0)
     @congestion_weekday_woman = Congestion.where(id: @congestion_weekday).where(classification: 1)
-    @congestion_weekday_rest_area = Congestion.where(id: @congestion_weekday).where(classification: 3)
+    @congestion_weekday_rest_area = Congestion.where(id: @congestion_weekday).where(classification: 2)
 
     @congestion_weekday_man_06to08 = Congestion.where(id: @congestion_weekday_man).where(time_zone: 1)
     @congestion_weekday_man_06to08_empty = Congestion.where(id: @congestion_weekday_man_06to08).where(congestion_situation: 0)
