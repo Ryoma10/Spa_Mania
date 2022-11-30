@@ -1,4 +1,6 @@
 class Public::BathhousesController < ApplicationController
+  before_action :set_q, only: [:index, :search]
+
   def confirm
   end
 
@@ -155,7 +157,8 @@ class Public::BathhousesController < ApplicationController
   end
 
   def index
-    @bathhouses = Bathhouse.where(complete: true)
+    @bathhouses = Bathhouse.page(params[:page])
+    @bathhouses_all = Bathhouse.all
   end
 
   def reviews_index
@@ -757,8 +760,21 @@ class Public::BathhousesController < ApplicationController
 
   def review
   end
+  
+  def search
+    @results = @q.result
+  end
 
   private
+  
+  def set_q
+    @q = Bathhouse.ransack(params[:q])
+  end
+  
+  def set_user
+    @bathhouse = Bathhouse.find(params[:id])
+  end
+  
   def bathhouse_params
     params.require(:bathhouse).permit(
       :prefecture_id,

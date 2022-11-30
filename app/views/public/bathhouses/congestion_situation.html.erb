@@ -219,6 +219,190 @@
               </div>
             </div>
           </div>
+          <h5 class="bathhouse-gender mt-3">■休日（土日）</h5>
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <button type="button" class="btn btn-outline-primary btn-congestion" data-toggle="collapse" href="#collapse_weekend_man">男湯</button>
+                </h4>
+              </div>
+              <div id="collapse_weekend_man" class="panel-collapse collapse">
+                <%= render 'congestion_weekend_man',
+                  congestion_06to08_empty: @congestion_weekend_man_06to08_empty,
+                  congestion_06to08_normal: @congestion_weekend_man_06to08_normal,
+                  congestion_06to08_crowded: @congestion_weekend_man_06to08_crowded,
+                  congestion_06to08_very_crowded: @congestion_weekend_man_06to08_very_crowded,
+                  congestion_08to10_empty: @congestion_weekend_man_08to10_empty,
+                  congestion_08to10_normal: @congestion_weekend_man_08to10_normal,
+                  congestion_08to10_crowded: @congestion_weekend_man_08to10_crowded,
+                  congestion_08to10_very_crowded: @congestion_weekend_man_08to10_very_crowded,
+                  congestion_10to12_empty: @congestion_weekend_man_10to12_empty,
+                  congestion_10to12_normal: @congestion_weekend_man_10to12_normal,
+                  congestion_10to12_crowded: @congestion_weekend_man_10to12_crowded,
+                  congestion_10to12_very_crowded: @congestion_weekend_man_10to12_very_crowded,
+                  congestion_12to14_empty: @congestion_weekend_man_12to14_empty,
+                  congestion_12to14_normal: @congestion_weekend_man_12to14_normal,
+                  congestion_12to14_crowded: @congestion_weekend_man_12to14_crowded,
+                  congestion_12to14_very_crowded: @congestion_weekend_man_12to14_very_crowded,
+                  congestion_14to16_empty: @congestion_weekend_man_14to16_empty,
+                  congestion_14to16_normal: @congestion_weekend_man_14to16_normal,
+                  congestion_14to16_crowded: @congestion_weekend_man_14to16_crowded,
+                  congestion_14to16_very_crowded: @congestion_weekend_man_14to16_very_crowded,
+                  congestion_16to18_empty: @congestion_weekend_man_16to18_empty,
+                  congestion_16to18_normal: @congestion_weekend_man_16to18_normal,
+                  congestion_16to18_crowded: @congestion_weekend_man_16to18_crowded,
+                  congestion_16to18_very_crowded: @congestion_weekend_man_16to18_very_crowded,
+                  congestion_18to20_empty: @congestion_weekend_man_18to20_empty,
+                  congestion_18to20_normal: @congestion_weekend_man_18to20_normal,
+                  congestion_18to20_crowded: @congestion_weekend_man_18to20_crowded,
+                  congestion_18to20_very_crowded: @congestion_weekend_man_18to20_very_crowded,
+                  congestion_20to22_empty: @congestion_weekend_man_20to22_empty,
+                  congestion_20to22_normal: @congestion_weekend_man_20to22_normal,
+                  congestion_20to22_crowded: @congestion_weekend_man_20to22_crowded,
+                  congestion_20to22_very_crowded: @congestion_weekend_man_20to22_very_crowded,
+                  congestion_22to24_empty: @congestion_weekend_man_22to24_empty,
+                  congestion_22to24_normal: @congestion_weekend_man_22to24_normal,
+                  congestion_22to24_crowded: @congestion_weekend_man_22to24_crowded,
+                  congestion_22to24_very_crowded: @congestion_weekend_man_22to24_very_crowded,
+                  congestion_00to02_empty: @congestion_weekend_man_00to02_empty,
+                  congestion_00to02_normal: @congestion_weekend_man_00to02_normal,
+                  congestion_00to02_crowded: @congestion_weekend_man_00to02_crowded,
+                  congestion_00to02_very_crowded: @congestion_weekend_man_00to02_very_crowded,
+                  congestion_02to04_empty: @congestion_weekend_man_02to04_empty,
+                  congestion_02to04_normal: @congestion_weekend_man_02to04_normal,
+                  congestion_02to04_crowded: @congestion_weekend_man_02to04_crowded,
+                  congestion_02to04_very_crowded: @congestion_weekend_man_02to04_very_crowded,
+                  congestion_04to06_empty: @congestion_weekend_man_04to06_empty,
+                  congestion_04to06_normal: @congestion_weekend_man_04to06_normal,
+                  congestion_04to06_crowded: @congestion_weekend_man_04to06_crowded,
+                  congestion_04to06_very_crowded: @congestion_weekend_man_04to06_very_crowded
+                %>
+              </div>
+            </div>
+          </div>
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <button type="button" class="btn btn-outline-danger btn-congestion" data-toggle="collapse" href="#collapse_weekend_woman">女湯</button>
+                </h4>
+              </div>
+              <div id="collapse_weekend_woman" class="panel-collapse collapse">
+                <%= render 'congestion_weekend_woman',
+                  congestion_06to08_empty: @congestion_weekend_woman_06to08_empty,
+                  congestion_06to08_normal: @congestion_weekend_woman_06to08_normal,
+                  congestion_06to08_crowded: @congestion_weekend_woman_06to08_crowded,
+                  congestion_06to08_very_crowded: @congestion_weekend_woman_06to08_very_crowded,
+                  congestion_08to10_empty: @congestion_weekend_woman_08to10_empty,
+                  congestion_08to10_normal: @congestion_weekend_woman_08to10_normal,
+                  congestion_08to10_crowded: @congestion_weekend_woman_08to10_crowded,
+                  congestion_08to10_very_crowded: @congestion_weekend_woman_08to10_very_crowded,
+                  congestion_10to12_empty: @congestion_weekend_woman_10to12_empty,
+                  congestion_10to12_normal: @congestion_weekend_woman_10to12_normal,
+                  congestion_10to12_crowded: @congestion_weekend_woman_10to12_crowded,
+                  congestion_10to12_very_crowded: @congestion_weekend_woman_10to12_very_crowded,
+                  congestion_12to14_empty: @congestion_weekend_woman_12to14_empty,
+                  congestion_12to14_normal: @congestion_weekend_woman_12to14_normal,
+                  congestion_12to14_crowded: @congestion_weekend_woman_12to14_crowded,
+                  congestion_12to14_very_crowded: @congestion_weekend_woman_12to14_very_crowded,
+                  congestion_14to16_empty: @congestion_weekend_woman_14to16_empty,
+                  congestion_14to16_normal: @congestion_weekend_woman_14to16_normal,
+                  congestion_14to16_crowded: @congestion_weekend_woman_14to16_crowded,
+                  congestion_14to16_very_crowded: @congestion_weekend_woman_14to16_very_crowded,
+                  congestion_16to18_empty: @congestion_weekend_woman_16to18_empty,
+                  congestion_16to18_normal: @congestion_weekend_woman_16to18_normal,
+                  congestion_16to18_crowded: @congestion_weekend_woman_16to18_crowded,
+                  congestion_16to18_very_crowded: @congestion_weekend_woman_16to18_very_crowded,
+                  congestion_18to20_empty: @congestion_weekend_woman_18to20_empty,
+                  congestion_18to20_normal: @congestion_weekend_woman_18to20_normal,
+                  congestion_18to20_crowded: @congestion_weekend_woman_18to20_crowded,
+                  congestion_18to20_very_crowded: @congestion_weekend_woman_18to20_very_crowded,
+                  congestion_20to22_empty: @congestion_weekend_woman_20to22_empty,
+                  congestion_20to22_normal: @congestion_weekend_woman_20to22_normal,
+                  congestion_20to22_crowded: @congestion_weekend_woman_20to22_crowded,
+                  congestion_20to22_very_crowded: @congestion_weekend_woman_20to22_very_crowded,
+                  congestion_22to24_empty: @congestion_weekend_woman_22to24_empty,
+                  congestion_22to24_normal: @congestion_weekend_woman_22to24_normal,
+                  congestion_22to24_crowded: @congestion_weekend_woman_22to24_crowded,
+                  congestion_22to24_very_crowded: @congestion_weekend_woman_22to24_very_crowded,
+                  congestion_00to02_empty: @congestion_weekend_woman_00to02_empty,
+                  congestion_00to02_normal: @congestion_weekend_woman_00to02_normal,
+                  congestion_00to02_crowded: @congestion_weekend_woman_00to02_crowded,
+                  congestion_00to02_very_crowded: @congestion_weekend_woman_00to02_very_crowded,
+                  congestion_02to04_empty: @congestion_weekend_woman_02to04_empty,
+                  congestion_02to04_normal: @congestion_weekend_woman_02to04_normal,
+                  congestion_02to04_crowded: @congestion_weekend_woman_02to04_crowded,
+                  congestion_02to04_very_crowded: @congestion_weekend_woman_02to04_very_crowded,
+                  congestion_04to06_empty: @congestion_weekend_woman_04to06_empty,
+                  congestion_04to06_normal: @congestion_weekend_woman_04to06_normal,
+                  congestion_04to06_crowded: @congestion_weekend_woman_04to06_crowded,
+                  congestion_04to06_very_crowded: @congestion_weekend_woman_04to06_very_crowded
+                %>
+              </div>
+            </div>
+          </div>
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <button type="button" class="btn btn-outline-success btn-congestion" data-toggle="collapse" href="#collapse_weekend_rest_area">休憩スペース</button>
+                </h4>
+              </div>
+              <div id="collapse_weekend_rest_area" class="panel-collapse collapse">
+                <%= render 'congestion_weekend_rest_area',
+                  congestion_06to08_empty: @congestion_weekend_rest_area_06to08_empty,
+                  congestion_06to08_normal: @congestion_weekend_rest_area_06to08_normal,
+                  congestion_06to08_crowded: @congestion_weekend_rest_area_06to08_crowded,
+                  congestion_06to08_very_crowded: @congestion_weekend_rest_area_06to08_very_crowded,
+                  congestion_08to10_empty: @congestion_weekend_rest_area_08to10_empty,
+                  congestion_08to10_normal: @congestion_weekend_rest_area_08to10_normal,
+                  congestion_08to10_crowded: @congestion_weekend_rest_area_08to10_crowded,
+                  congestion_08to10_very_crowded: @congestion_weekend_rest_area_08to10_very_crowded,
+                  congestion_10to12_empty: @congestion_weekend_rest_area_10to12_empty,
+                  congestion_10to12_normal: @congestion_weekend_rest_area_10to12_normal,
+                  congestion_10to12_crowded: @congestion_weekend_rest_area_10to12_crowded,
+                  congestion_10to12_very_crowded: @congestion_weekend_rest_area_10to12_very_crowded,
+                  congestion_12to14_empty: @congestion_weekend_rest_area_12to14_empty,
+                  congestion_12to14_normal: @congestion_weekend_rest_area_12to14_normal,
+                  congestion_12to14_crowded: @congestion_weekend_rest_area_12to14_crowded,
+                  congestion_12to14_very_crowded: @congestion_weekend_rest_area_12to14_very_crowded,
+                  congestion_14to16_empty: @congestion_weekend_rest_area_14to16_empty,
+                  congestion_14to16_normal: @congestion_weekend_rest_area_14to16_normal,
+                  congestion_14to16_crowded: @congestion_weekend_rest_area_14to16_crowded,
+                  congestion_14to16_very_crowded: @congestion_weekend_rest_area_14to16_very_crowded,
+                  congestion_16to18_empty: @congestion_weekend_rest_area_16to18_empty,
+                  congestion_16to18_normal: @congestion_weekend_rest_area_16to18_normal,
+                  congestion_16to18_crowded: @congestion_weekend_rest_area_16to18_crowded,
+                  congestion_16to18_very_crowded: @congestion_weekend_rest_area_16to18_very_crowded,
+                  congestion_18to20_empty: @congestion_weekend_rest_area_18to20_empty,
+                  congestion_18to20_normal: @congestion_weekend_rest_area_18to20_normal,
+                  congestion_18to20_crowded: @congestion_weekend_rest_area_18to20_crowded,
+                  congestion_18to20_very_crowded: @congestion_weekend_rest_area_18to20_very_crowded,
+                  congestion_20to22_empty: @congestion_weekend_rest_area_20to22_empty,
+                  congestion_20to22_normal: @congestion_weekend_rest_area_20to22_normal,
+                  congestion_20to22_crowded: @congestion_weekend_rest_area_20to22_crowded,
+                  congestion_20to22_very_crowded: @congestion_weekend_rest_area_20to22_very_crowded,
+                  congestion_22to24_empty: @congestion_weekend_rest_area_22to24_empty,
+                  congestion_22to24_normal: @congestion_weekend_rest_area_22to24_normal,
+                  congestion_22to24_crowded: @congestion_weekend_rest_area_22to24_crowded,
+                  congestion_22to24_very_crowded: @congestion_weekend_rest_area_22to24_very_crowded,
+                  congestion_00to02_empty: @congestion_weekend_rest_area_00to02_empty,
+                  congestion_00to02_normal: @congestion_weekend_rest_area_00to02_normal,
+                  congestion_00to02_crowded: @congestion_weekend_rest_area_00to02_crowded,
+                  congestion_00to02_very_crowded: @congestion_weekend_rest_area_00to02_very_crowded,
+                  congestion_02to04_empty: @congestion_weekend_rest_area_02to04_empty,
+                  congestion_02to04_normal: @congestion_weekend_rest_area_02to04_normal,
+                  congestion_02to04_crowded: @congestion_weekend_rest_area_02to04_crowded,
+                  congestion_02to04_very_crowded: @congestion_weekend_rest_area_02to04_very_crowded,
+                  congestion_04to06_empty: @congestion_weekend_rest_area_04to06_empty,
+                  congestion_04to06_normal: @congestion_weekend_rest_area_04to06_normal,
+                  congestion_04to06_crowded: @congestion_weekend_rest_area_04to06_crowded,
+                  congestion_04to06_very_crowded: @congestion_weekend_rest_area_04to06_very_crowded
+                %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
