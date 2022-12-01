@@ -3,7 +3,7 @@
   <div class="row mb-3">
     <div class="col-12">
       <h1>施設を探す</h1>
-      <%= search_form_for @q, url: search_bathhouses_path do |f| %>
+      <%= search_form_for @q, url: bathhouses_path do |f| %>
         <div class="input-group">
           <%= f.search_field :name_cont, class: "form-control", placeholder: "施設名・キーワードから探す" %>
           <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
@@ -12,12 +12,34 @@
     </div>
   </div>
   <div class="row mb-3">
-    <div class="col-4">
+    <div class="col-3">
     </div>
-    <div class="col-8">
-      <div>
-        <%= @bathhouses_all.count %>件中
+    <div class="col-9">
+      <div class="d-flex">
+        <div>
+          <%= @results.count %>件中&emsp;<%= @results_page.count %>件を表示
+        </div>
+        <div class="ml-auto">
+          並び順：
+        </div>
       </div>
+      <% @results_page.each do |bathhouse| %>
+        <div class="border border-dark">
+          <div class="d-flex">
+            <div class="bathhouse-index">
+              <% if bathhouse.bathhouse_image_main.attached? %>
+                <%= image_tag bathhouse.bathhouse_image_main, class: "bathhouse-index-img" %>
+              <% else %>
+                <%= image_tag 'no_image.png', class: "bathhouse-index-img" %>
+              <% end %>
+            </div>
+            <h4>
+              <%= bathhouse.name %>
+            </h4>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @results_page, theme: 'twitter-bootstrap-4' %>
     </div>
   </div>
 </div>
