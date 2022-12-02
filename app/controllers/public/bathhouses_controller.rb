@@ -157,9 +157,9 @@ class Public::BathhousesController < ApplicationController
   end
 
   def index
-    @bathhouses_all = Bathhouse.all
+    @bathhouses = Bathhouse.all
     @results = @q.result
-    @results_page = @results.page(params[:page])
+    @results_page = @results.page params[:page]
   end
 
   def reviews_index

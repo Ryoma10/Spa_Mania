@@ -18,4 +18,9 @@ class Bathhouse < ApplicationRecord
   has_one_attached :bathhouse_image_sub3
   has_one_attached :bathhouse_image_sub4
   has_one_attached :bathhouse_image_sub5
+
+  def sort_by_sort_url(url, order)
+    url.gsub(/%5Bs%5D=\w+\+\w+/, "%5Bs%5D=#{order}")
+  end
+
 end
