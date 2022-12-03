@@ -22,8 +22,9 @@
         <div class="ml-auto">
           並び順：
           <select class="ui fluid dropdown" onChange="location.href=value;">
-            <option value="">default</option>
+            <option value="<%= sort_by_sort_url(sort_url(@q, :updated_at), 'updated_at+desc') %>">選択してください</option>
             <option value="<%= sort_by_sort_url(sort_url(@q, :updated_at), 'updated_at+desc') %>">新着順</option>
+            <option value="<%= sort_by_sort_url(sort_url(@q, :updated_at), 'updated_at+asc') %>">登録順</option>
             <option value="">お気に入り件数順</option>
             <option value="">レビュー数順</option>
             <option value="">レビュー数（男性）順</option>

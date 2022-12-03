@@ -1,5 +1,5 @@
 class Public::BathhousesController < ApplicationController
-  before_action :set_q, only: [:index]
+  before_action :set_q
 
   def confirm
   end

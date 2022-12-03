@@ -75,8 +75,12 @@
               <li class="nav-item">
                 <div class="input-group">
                   <%= link_to "施設を探す", bathhouses_path, class: 'nav-link text-dark mx-1' %>
-                  <input type="text" class="form-control" placeholder="Search">
-                  <button class="btn btn-outline-success" type="button" id="button-addon2">検索</button>
+                  <%= search_form_for @q, url: bathhouses_path do |f| %>
+                    <div class="input-group">
+                      <%= f.search_field :name_or_address_city_or_address_town_or_address_building_or_access_cont, class: "form-control", placeholder: "施設検索" %>
+                      <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
+                    </div>
+                  <% end %>
                 </div>
               </li>
             </ul>
