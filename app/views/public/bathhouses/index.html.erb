@@ -8,12 +8,114 @@
           <%= f.search_field :name_or_address_city_or_address_town_or_address_building_or_access_cont, class: "form-control", placeholder: "施設名・キーワードから探す" %>
           <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
         </div>
-      <% end %>
     </div>
   </div>
   <div class="row mb-3">
     <div class="col-3">
+      <div>
+        <h3>エリアから探す</h3>
+        <div>都道府県別に絞り込んで探す</div>
+          <div class="input-group">
+            <%= f.collection_check_boxes(:prefecture_id_in, Prefecture.all, :id, :name) do |prefecture| %>
+              <% @index = @index+1 %>
+              <% if @index % 4 == 1 %>
+                <ul class="d-flex prefecture-list">
+              <% end %>
+                  <li class="prefecture-search text-nowrap">
+                    <label>
+                      <%=  prefecture.check_box + prefecture.text  %>
+                    </label>
+                  </li>
+              <% if @index % 4 == 0 %>
+                </ul>
+              <% end %>
+            <% end %>
+            <% @index = 0 %>
+          </div>
+          <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
+      </div>
+      <div>
+        <h3>特徴から探す</h3>
+        <div>特徴から絞り込んで探す</div>
+        <%= form_with @q, url: bathhouses_path do |f| %>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+              <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+              <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= sauna.label { sauna.check_box + sauna.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+        <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-1 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
+                <% @index = @index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= other.label { other.check_box + other.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <div class="row check_box">
+            <div class="col-10 px-0 mt-3 md-2 ml-4">
+              <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+              <%= c.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
+                <% @index=@index+1 %>
+                <% if @index % 4 == 1 %>
+                  <ul class="row features-list">
+                <% end %>
+                    <li class="col-3 d-flex">
+                      <%= building_facilities.label { building_facilities.check_box + building_facilities.text } %>
+                    </li>
+                <% if @index % 4 == 0 %>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% @index = 0 %>
+            </div>
+          </div>
+          <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
+        <% end %>
+      </div>
     </div>
+    <% end %>
     <div class="col-9">
       <div class="d-flex">
         <div>
@@ -50,6 +152,7 @@
                   <h4>
                     <%= bathhouse.name %>
                   </h4>
+                  <%= bathhouse.prefecture.name %>&nbsp;
                   <%= bathhouse.address_city %>&nbsp;
                   <%= bathhouse.address_town %>
                   <% if bathhouse.address_building.present? %>

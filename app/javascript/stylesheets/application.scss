@@ -118,10 +118,10 @@
   top: 300px
 }
 
-.new-img{
-    width: 30%;
-    object-fit: cover;
-}
+// .new-img{
+//     width: 30%;
+//     object-fit: cover;
+// }
 
 .user-img {
   border-radius: 50%;
@@ -167,4 +167,15 @@
 
 .btn-congestion {
   width: 100%;
+}
+
+.prefecture-list {
+  padding: 0;
+  list-style: none;
+}
+
+.prefecture-search {
+  padding: 0;
+  font-size: 0.75rem;
+  width: 4.5vw;
 }

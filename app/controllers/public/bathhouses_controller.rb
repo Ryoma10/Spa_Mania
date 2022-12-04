@@ -160,6 +160,19 @@ class Public::BathhousesController < ApplicationController
     @bathhouses = Bathhouse.all
     @results = @q.result
     @results_page = @results.page params[:page]
+
+    @bath_facilities = Feature.where(category: 'bath_facilities')
+    @sauna = Feature.where(category: 'sauna')
+    @other = Feature.where(category: 'other')
+    @building_facilities = Feature.where(category: 'building_facilities')
+
+    if params[:bathhouse][:feature_attributes][:feature_ids].present?
+      @features = 
+      @categories = Category.where(params[:bathhouse][:feature_attributes][:feature_ids].compact_blank)
+      @gender = Gender.where()
+      # @results_page = Bathhouse.where()@results.page params[:page]
+    end
+    @index = 0
   end
 
   def reviews_index
@@ -654,6 +667,7 @@ class Public::BathhousesController < ApplicationController
 
   def edit_image
     @bathhouse = Bathhouse.find(params[:id])
+    @bathhouse.attributes = bathhouse_params
     @gender_man_fetures = Feature.find(params[:bathhouse][:gender_man_attributes][:feature_ids].compact_blank)
     @gender_woman_features = Feature.find(params[:bathhouse][:gender_woman_attributes][:feature_ids].compact_blank)
     @gender_be_common_fetures = Feature.find(params[:bathhouse][:gender_be_common_attributes][:feature_ids].compact_blank)
@@ -832,5 +846,10 @@ class Public::BathhousesController < ApplicationController
   def confirm_params
     params.require(:bathhouse).permit(:confirm_id)
   end
+
+  def search_params
+    params.require(:bathhouse).permit(:confirm_id)
+  end
+
 
 end

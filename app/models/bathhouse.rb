@@ -6,7 +6,7 @@ class Bathhouse < ApplicationRecord
 
 
   belongs_to :user
-  belongs_to :prefecture
+  belongs_to_active_hash :prefecture
 
   attribute :gender_man_attributes, type: Array
   attribute :gender_woman_attributes, type: Array
