@@ -37,78 +37,54 @@
       <div>
         <h3>特徴から探す</h3>
         <div>特徴から絞り込んで探す</div>
-        <%= form_with @q, url: bathhouses_path do |f| %>
+        <%= form_with url: bathhouses_path do |f| %>
           <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
               <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
-                <% @index = @index+1 %>
-                <% if @index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex">
+                  <ul class="feature-list">
+                    <li class="feature-search">
                       <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
                     </li>
-                <% if @index % 4 == 0 %>
                   </ul>
-                <% end %>
               <% end %>
-              <% @index = 0 %>
             </div>
           </div>
           <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
               <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
-                <% @index=@index+1 %>
-                <% if @index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex">
+                  <ul class="feature-list">
+                    <li class="feature-search">
                       <%= sauna.label { sauna.check_box + sauna.text } %>
                     </li>
-                <% if @index % 4 == 0 %>
                   </ul>
-                <% end %>
               <% end %>
-              <% @index = 0 %>
             </div>
           </div>
         <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
           <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-              <%= c.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
-                <% @index = @index+1 %>
-                <% if @index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex">
+              <%= f.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
+                <ul class="feature-list">
+                    <li class="feature-search">
                       <%= other.label { other.check_box + other.text } %>
                     </li>
-                <% if @index % 4 == 0 %>
                   </ul>
-                <% end %>
               <% end %>
-              <% @index = 0 %>
             </div>
           </div>
           <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-              <%= c.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
-                <% @index=@index+1 %>
-                <% if @index % 4 == 1 %>
-                  <ul class="row features-list">
-                <% end %>
-                    <li class="col-3 d-flex">
+              <%= f.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
+                <ul class="feature-list">
+                    <li class="feature-search">
                       <%= building_facilities.label { building_facilities.check_box + building_facilities.text } %>
                     </li>
-                <% if @index % 4 == 0 %>
                   </ul>
-                <% end %>
               <% end %>
-              <% @index = 0 %>
             </div>
           </div>
           <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>

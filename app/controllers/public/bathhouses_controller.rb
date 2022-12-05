@@ -159,20 +159,23 @@ class Public::BathhousesController < ApplicationController
   def index
     @bathhouses = Bathhouse.all
     @results = @q.result
-    @results_page = @results.page params[:page]
 
     @bath_facilities = Feature.where(category: 'bath_facilities')
     @sauna = Feature.where(category: 'sauna')
     @other = Feature.where(category: 'other')
     @building_facilities = Feature.where(category: 'building_facilities')
 
-    if params[:bathhouse][:feature_attributes][:feature_ids].present?
-      @features = 
-      @categories = Category.where(params[:bathhouse][:feature_attributes][:feature_ids].compact_blank)
-      @gender = Gender.where()
-      # @results_page = Bathhouse.where()@results.page params[:page]
+
+    if params[:feature_ids].present?
+      if params[:feature_ids].compact_blank.present?
+        features = Feature.where(id: params[:feature_ids].compact_blank)
+        categories = Category.where(feature_id: features.pluck(:id))
+        gender = Gender.where(id: categories.pluck(:gender_id))
+        @results = Bathhouse.where(id: @results.ids).where(id: gender.pluck(:bathhouse_id))
+      end
     end
     @index = 0
+    @results_page = @results.page params[:page]
   end
 
   def reviews_index
