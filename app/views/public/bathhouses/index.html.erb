@@ -32,7 +32,7 @@
             <% end %>
             <% @index = 0 %>
           </div>
-          <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
+          <%= f.submit '検索', class: "btn btn-outline-success w-100 mb-2", id: "button-addon2" %>
       </div>
       <div>
         <h3>特徴から探す</h3>
@@ -41,7 +41,7 @@
           <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-              <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name) do |bath_facilitie| %>
+              <%= f.collection_check_boxes(:feature_ids, @bath_facilities, :id, :name, checked: params[:feature_ids]) do |bath_facilitie| %>
                   <ul class="feature-list">
                     <li class="feature-search">
                       <%= bath_facilitie.label { bath_facilitie.check_box + bath_facilitie.text } %>
@@ -53,7 +53,7 @@
           <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-              <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name) do |sauna| %>
+              <%= f.collection_check_boxes(:feature_ids, @sauna, :id, :name, checked: params[:feature_ids]) do |sauna| %>
                   <ul class="feature-list">
                     <li class="feature-search">
                       <%= sauna.label { sauna.check_box + sauna.text } %>
@@ -62,11 +62,12 @@
               <% end %>
             </div>
           </div>
-        <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
+          <%= f.submit '検索', class: "btn btn-outline-success w-100 mb-2", id: "button-addon2" %>
+          <h4 class="font-weight-bold mt-2 mb-2">■施設設備</h4>
           <div class="row check_box">
             <div class="col-10 px-0 mt-1 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-              <%= f.collection_check_boxes(:feature_ids, @other, :id, :name) do |other| %>
+              <%= f.collection_check_boxes(:feature_ids, @other, :id, :name, checked: params[:feature_ids]) do |other| %>
                 <ul class="feature-list">
                     <li class="feature-search">
                       <%= other.label { other.check_box + other.text } %>
@@ -78,7 +79,7 @@
           <div class="row check_box">
             <div class="col-10 px-0 mt-3 md-2 ml-4">
               <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-              <%= f.collection_check_boxes(:feature_ids, @building_facilities, :id, :name) do |building_facilities| %>
+              <%= f.collection_check_boxes(:feature_ids, @building_facilities, :id, :name, checked: params[:feature_ids]) do |building_facilities| %>
                 <ul class="feature-list">
                     <li class="feature-search">
                       <%= building_facilities.label { building_facilities.check_box + building_facilities.text } %>
@@ -87,7 +88,7 @@
               <% end %>
             </div>
           </div>
-          <%= f.submit '検索', class: "btn btn-outline-success", id: "button-addon2" %>
+          <%= f.submit '検索', class: "btn btn-outline-success w-100 mb-2", id: "button-addon2" %>
         <% end %>
       </div>
     </div>
@@ -165,7 +166,9 @@
           <% end %>
         <% end %>
       </div>
-      <%= paginate @results_page, theme: 'twitter-bootstrap-4' %>
+      <div data-turbolinks="false">
+        <%= paginate @results_page, theme: 'twitter-bootstrap-4' %>
+      </div>
     </div>
   </div>
 </div>
