@@ -1,2 +1,30 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<p id="notice"></p>
+<div class="container" id="bathhouse_<%= params[:id] %>">
+  <div class="row mb-3">
+    <div class="col-12 px-0">
+      <div class="d-flex">
+        <% if @user.user_image.attached? %>
+          <div class="user-img-top m-1">
+            <%= image_tag @user.user_image, class: "user-img" %>
+          </div>
+        <% else %>
+          <div class="user-img-top m-1">
+            <%= image_tag 'onsen_images.png', class: "user-img" %>
+          </div>
+        <% end %>
+        <div class="my-auto ml-3">
+          <h3 class="font-weight-bold"><%= @user.name %></h3>
+          <%= safe_join(@user.introduction.split("\n"),tag(:br)) %>
+        </div>
+        <% if @user.id == current_user.id %>
+          <div class="ml-auto">
+            <%= button_to "プロフィールを編集する", edit_user_path(current_user.id), method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+          </div>
+        <% end %>
+      </div>
+      <table class="">
+
+      </table>
+    </div>
+  </div>
+</div>
