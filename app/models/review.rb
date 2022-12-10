@@ -11,6 +11,9 @@ class Review < ApplicationRecord
   attribute :bath_congestion_attributes
   attribute :rest_area_congestion_attributes
 
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   has_one_attached :image
 end

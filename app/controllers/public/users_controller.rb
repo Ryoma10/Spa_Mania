@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @review = Review.where(user_id: @user.id).reverse_order.page params[:page]
   end
 
   def stats

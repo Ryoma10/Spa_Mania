@@ -55,6 +55,10 @@ Rails.application.routes.draw do
     resources :reports, only: [:new, :create]
 
     resources :reviews, only: [:index, :show, :create, :destroy]
+
+    resource :favorites, only: [:create, :destroy]
+
+    resource :favourite_bathhouses, only: [:create, :destroy]
   end
 
   namespace :admin do
