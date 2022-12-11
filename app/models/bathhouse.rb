@@ -19,7 +19,7 @@ class Bathhouse < ApplicationRecord
   has_one_attached :bathhouse_image_sub4
   has_one_attached :bathhouse_image_sub5
 
-  def bathhouse_favorited_by?(user)
+  def bathhouse_favourited_by?(user)
     favourite_bathhouses.exists?(user_id: user.id)
   end
 

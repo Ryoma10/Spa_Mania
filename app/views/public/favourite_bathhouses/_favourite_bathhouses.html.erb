@@ -1,0 +1,9 @@
+<% if bathhouse.bathhouse_favourited_by?(current_user) %>
+  <div class="fontsize-30 ml-2">
+    <%= button_to "お気に入り解除", bathhouse_favourite_bathhouses_path(bathhouse), method: :delete, remote: true, class: "btn btn-outline-danger px-4 font-weight-bold mb-2" %>
+  </div>
+<% else %>
+  <div class="fontsize-30 ml-2">
+    <%= button_to "お気に入りに登録", bathhouse_favourite_bathhouses_path(bathhouse), method: :post, remote: true, class: "btn btn-success px-3 font-weight-bold mb-2" %>
+  </div>
+<% end %>

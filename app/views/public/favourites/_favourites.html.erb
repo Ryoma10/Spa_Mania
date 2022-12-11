@@ -1,0 +1,14 @@
+<% if review.favourited_by?(current_user) %>
+  <div class="fontsize-20 ml-2">
+    <%= link_to review_favourites_path(review), method: :delete, remote: true, class: 'nav-link text-dark' do %>
+      <i class="fa-solid fa-thumbs-up"></i>&nbsp;<%= review.favourites.count %>
+    <% end %>
+  </div>
+<% else %>
+<%# byebug %>
+  <div class="fontsize-20 ml-2">
+    <%= link_to review_favourites_path(review), method: :post, remote: true, class: 'nav-link text-dark' do %>
+      <i class="fa-regular fa-thumbs-up"></i>&nbsp;<%= review.favourites.count %>
+    <% end %>
+  </div>
+<% end %>

@@ -14,12 +14,17 @@
           <%= @review_satisfaction.count %>件
         </h4>
       </div>
+      <div class="m-0 font-weight-bold mt-1">
+        お気に入り登録数：<%= @bathhouse.favourite_bathhouses.count %>
+      </div>
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
         <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
         <%= button_to "投稿する", review_new_bathhouse_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
-        <%= button_to "お気に入りに登録", review_new_bathhouse_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
+        <div id="favourite_bathhouse_buttons_<%= @bathhouse.id %>">
+          <%= render "public/favourite_bathhouses/favourite_bathhouses", bathhouse: @bathhouse %>
+        </div>
       </div>
     </div>
     <div class="col-1"></div>

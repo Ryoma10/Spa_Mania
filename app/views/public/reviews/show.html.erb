@@ -14,12 +14,17 @@
           <%= @review_satisfaction.count %>件
         </h4>
       </div>
+      <div class="m-0 font-weight-bold mt-1">
+        お気に入り登録数：<%= @bathhouse.favourite_bathhouses.count %>
+      </div>
     </div>
     <div class="col-5 px-0">
       <div class="text-right">
         <%= button_to "編集する", edit_bathhouse_path, method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
         <%= button_to "投稿する", review_new_bathhouse_path, method: :get, class: "btn btn-primary px-5 font-weight-bold mb-2" %>
-        <%= button_to "お気に入りに登録", review_new_bathhouse_path, method: :get, class: "btn btn-success px-3 font-weight-bold mb-2" %>
+        <div id="favourite_bathhouse_buttons_<%= @bathhouse.id %>">
+          <%= render "public/favourite_bathhouses/favourite_bathhouses", bathhouse: @bathhouse %>
+        </div>
       </div>
     </div>
     <div class="col-1"></div>
@@ -75,11 +80,19 @@
               <%= image_tag @review.image, class: "review-show-img" %>
             <% end %>
           </div>
-          <% if @review.user_id == current_user.id %>
-            <div class="text-right">
-              <%= link_to "削除する", review_path(params[:id]), method: :delete, class: "mr-2 text-danger", data: { confirm: '投稿を削除しますか？' } %>
+          <div class="d-flex">
+            <div id="favourite_buttons_<%= @review.id %>">
+              <%= render "public/favourites/favourites", review: @review %>
             </div>
-          <% end %>
+            <div class="fontsize-20 comment">
+              <i class="fa-regular fa-comment"></i>&nbsp;<%= @review.comments.count %>
+            </div>
+            <% if @review.user_id == current_user.id %>
+              <div class="ml-auto mt-auto">
+                <%= link_to "削除する", review_path(params[:id]), method: :delete, class: "mr-2 text-danger", data: { confirm: '投稿を削除しますか？' } %>
+              </div>
+            <% end %>
+          </div>
         </div>
         <% @comments.each do |comment| %>
           <div class="border border-dark">

@@ -48,17 +48,17 @@ Rails.application.routes.draw do
         get :search
         post :create_confirm
       end
+      resource :favourite_bathhouses, only: [:create, :destroy]
     end
 
     resources :comments, only: [:create, :destroy]
 
     resources :reports, only: [:new, :create]
 
-    resources :reviews, only: [:index, :show, :create, :destroy]
+    resources :reviews, only: [:index, :show, :create, :destroy] do
+      resource :favourites, only: [:create, :destroy]
+    end
 
-    resource :favorites, only: [:create, :destroy]
-
-    resource :favourite_bathhouses, only: [:create, :destroy]
   end
 
   namespace :admin do

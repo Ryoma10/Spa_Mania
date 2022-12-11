@@ -1,15 +1,15 @@
 class Public::FavouriteBathhousesController < ApplicationController
   def create
-    review = Review.find(params[:review_id])
-    favorite = current_user.favorites.new(review_id: review.id)
-    favorite.save
-    redirect_to review_path(review.id)
+    @bathhouse = Bathhouse.find(params[:bathhouse_id])
+    favourite_bathhouse = current_user.favourite_bathhouses.new(bathhouse_id: @bathhouse.id)
+    favourite_bathhouse.save
+    # redirect_to bathhouse_path(bathhouse.id)
   end
 
   def destroy
-    review = Review.find(params[:review_id])
-    favorite = current_user.favorites.new(review_id: review.id)
-    favorite.destroy
-    redirect_to review_path(review.id)
+    @bathhouse = Bathhouse.find(params[:bathhouse_id])
+    favourite_bathhouse = current_user.favourite_bathhouses.find_by(bathhouse_id: @bathhouse.id)
+    favourite_bathhouse.destroy
+    # redirect_to bathhouse_path(bathhouse.id)
   end
 end
