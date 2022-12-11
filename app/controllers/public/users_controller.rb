@@ -7,7 +7,13 @@ class Public::UsersController < ApplicationController
   def stats
   end
 
-  def favorite_bathhouses
+  def favourite_review
+    @user = User.find(params[:id])
+    @favourites = Favourite.where(user_id: @user.id)
+    @review = Review.where(id: @favourites.pluck(:review_id)).reverse_order.page params[:page]
+  end
+
+  def favourite_bathhouses
   end
 
   def follow

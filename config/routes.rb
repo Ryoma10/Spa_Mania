@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy] do
       member do
         get :stats
-        get :favorite_bathhouses
+        get :favourite_review
+        get :favourite_bathhouses
         get :follow
         get :follower
         get :confirm
