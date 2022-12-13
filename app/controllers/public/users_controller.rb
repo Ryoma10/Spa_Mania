@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
   def favourite_bathhouses
     @user = User.find(params[:id])
     @favourite_bathhouses = FavouriteBathhouse.where(user_id: @user.id)
-    @review = Review.where(id: @favourite_bathhouses.pluck(:bathhouse_id)).reverse_order.page params[:page]
+    @bathhouse = Bathhouse.where(id: @favourite_bathhouses.pluck(:bathhouse_id)).reverse_order.page params[:page]
   end
 
   def follow

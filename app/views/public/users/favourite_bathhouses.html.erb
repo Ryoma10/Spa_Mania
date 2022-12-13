@@ -1,2 +1,142 @@
-<h1>Public::Users#favourite_bathhouses</h1>
-<p>Find me in app/views/public/users/favorite_bathhouses.html.erb</p>
+<p id="notice"></p>
+<div class="container" id="bathhouse_<%= params[:id] %>">
+  <div class="row mb-3">
+    <div class="col-12 px-0">
+      <div class="d-flex">
+        <% if @user.user_image.attached? %>
+          <div class="user-img-top m-1">
+            <%= image_tag @user.user_image, class: "user-img" %>
+          </div>
+        <% else %>
+          <div class="user-img-top m-1">
+            <%= image_tag 'onsen_images.png', class: "user-img" %>
+          </div>
+        <% end %>
+        <div class="my-auto ml-3">
+          <h3 class="font-weight-bold"><%= @user.name %></h3>
+          <% if @user.url.present? %>
+            <%= safe_join(@user.introduction.split("\n"),tag(:br)) %>
+          <% end %>
+        </div>
+        <% if @user.id == current_user.id %>
+          <div class="ml-auto">
+            <%= button_to "プロフィールを編集する", edit_user_path(current_user.id), method: :get, class: "btn btn-outline-dark btn-sm mb-2" %>
+          </div>
+        <% end %>
+      </div>
+      <table class="">
+        <% if @user.url.present? %>
+          <tr>
+            <th>
+              <i class="fa-solid fa-link"></i>
+            </th>
+            <td>
+              <%= link_to @user.url %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @user.home_bathhouse.present? %>
+          <tr>
+            <th>
+              <i class="fa-light fa-location-dot"></i>
+            </th>
+            <td>
+              <%= @user.bome_bathhouse %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <ul class="row bathhouse-list font-weight-bold justify-content-center w-100 mx-auto mb-3 px-0">
+        <li class="fontsize-24 mx-5"><%= link_to "投稿", user_path(params[:id]), class: "link-none" %></li>
+        <li class="fontsize-24 mx-5"><%= link_to "いいね", favourite_review_user_path(params[:id]), class: "link-none" %></li>
+        <li class="bathhouse-border fontsize-24 mx-5">お気に入り施設</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10 px-0 my-3">
+      <div id="review_<%= params[:page] %>">
+        <% @bathhouse.each do |bathhouse| %>
+          <%= link_to bathhouse_path(bathhouse.id), class: "link-none text-dark text-decoration-none" do %>
+            <div class="border border-dark">
+              <div class="d-flex">
+                <div class="bathhouse-index">
+                  <% if bathhouse.bathhouse_image_main.attached? %>
+                    <%= image_tag bathhouse.bathhouse_image_main, class: "bathhouse-index-img" %>
+                  <% else %>
+                    <%= image_tag 'no_image.png', class: "bathhouse-index-img" %>
+                  <% end %>
+                </div>
+                <div>
+                  <h4>
+                    <%= bathhouse.name %>
+                  </h4>
+                  <%= bathhouse.prefecture.name %>&nbsp;
+                  <%= bathhouse.address_city %>&nbsp;
+                  <%= bathhouse.address_town %>
+                  <% if bathhouse.address_building.present? %>
+                    <%= bathhouse.address_building %>
+                  <% end %>
+                  <table class="fontsize-14">
+                    <tr>
+                      <th>■営業時間&nbsp;</th><td><%= bathhouse.opening_hours %></td>
+                    </tr>
+                    <tr>
+                      <th>■定休日&nbsp;</th><td><%= bathhouse.regular_holiday %></td>
+                    </tr>
+                    <tr>
+                      <th>■料金&nbsp;</th><td><%= bathhouse.minimum_fee %>円～</td>
+                    </tr>
+                    <tr>
+                      <th>■お気に入り&nbsp;</th><td>n件</td>
+                    </tr>
+                  </table>
+                  <div class="d-flex">
+                    <% if bathhouse.reviews.where("satisfaction > ?", 0).average(:satisfaction).to_f.round(1) > 0 %>
+                      <span>満足度：</span>
+                      <div id="satisfaction_ave_<%= bathhouse.id %>"></div>
+                      <div>
+                        &nbsp;<%= bathhouse.reviews.where("satisfaction > ?", 0).average(:satisfaction).to_f.round(1) %>
+                        点/
+                        <%= bathhouse.reviews.where("satisfaction > ?", 0).count %>件
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div data-turbolinks="false">
+        <%= paginate @bathhouse, theme: 'twitter-bootstrap-4' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).on('turbolinks:load', function() {
+  if ($('#bathhouse_<%= params[:page] %>').length) {
+    console.log('test!');
+    <% @bathhouse.each do |bathhouse| %>
+      <% if bathhouse.reviews.where("satisfaction > ?", 0).average(:satisfaction).to_f.round(1) > 0 %>
+        let raty_<%= bathhouse.id %> = document.querySelector('#satisfaction_ave_<%= bathhouse.id %>');
+        //var elem = document.getElementById(('satisfaction_<%= bathhouse.id %>')
+        $("#satisfaction_ave_<%= bathhouse.id %>").empty();
+        //satisfaction_<%= bathhouse.id %>.innerHTML = "";
+        let option_<%= bathhouse.id %> = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: "<%= bathhouse.reviews.where("satisfaction > ?", 0).average(:satisfaction).to_f.round(1) %>",
+            half: true,
+            readOnly: true,
+          };
+        raty(raty_<%= bathhouse.id %> ,option_<%= bathhouse.id %>);
+      <% end %>
+    <% end %>
+}
+});
+</script>
