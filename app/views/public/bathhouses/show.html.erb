@@ -178,120 +178,126 @@
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">男湯</h5>
       </div>
     </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-        <% @bathhouse_man_bath_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-        <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-        <% @bathhouse_man_sauna.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
-          <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
+    <% if @bathhouse_gender_man.present? %>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-1 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+          <% @bathhouse_man_bath_facilities.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
           <% if index % 4 == 0 %>
-            </ul>
+              </ul>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-3 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+          <% @bathhouse_man_sauna.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
+            <% if index % 4 == 0 %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class="row mt-3">
       <div class="col-1"></div>
       <div class="col-10">
         <h5 class="border border-dark rounded-pill bathhouse-gender text-center">女湯</h5>
       </div>
     </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
-        <% @bathhouse_woman_bath_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
+    <% if @bathhouse_gender_woman.present? %>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-1 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:bath_facilities] %><br></h5>
+          <% @bathhouse_woman_bath_facilities.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
+            <% if index % 4 == 0 %>
+              </ul>
+            <% end %>
           <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
-        <% @bathhouse_woman_sauna.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-3 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:sauna] %><br></h5>
+          <% @bathhouse_woman_sauna.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
+            <% if index % 4 == 0 %>
+              </ul>
+            <% end %>
           <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="row">
       <div class="col-1"></div>
       <div class="col-10">
         <h3 class="font-weight-bold mt-5 mb-3">■施設設備</h3>
       </div>
     </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-1 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
-        <% @bathhouse_other.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
+    <% if @bathhouse_gender_be_common.present? %>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-1 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:other] %><br></h5>
+          <% @bathhouse_other.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
+            <% if index % 4 == 0 %>
+              </ul>
+            <% end %>
           <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10 px-0 mt-3 md-2 ml-4">
-        <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
-        <% @bathhouse_building_facilities.each.with_index(1) do |feature, index| %>
-          <% if index % 4 == 1 %>
-            <ul class="row features-list">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 px-0 mt-3 md-2 ml-4">
+          <h5 class="font-weight-bold"><%= Feature.categories_i18n[:building_facilities] %><br></h5>
+          <% @bathhouse_building_facilities.each.with_index(1) do |feature, index| %>
+            <% if index % 4 == 1 %>
+              <ul class="row features-list">
+            <% end %>
+            <li class="col-3 d-flex justify-content-between">
+              <span class="fontsize-20"><%= feature.name %>&emsp;</span>
+            </li>
+            <% if index % 4 == 0 %>
+              </ul>
+            <% end %>
           <% end %>
-          <li class="col-3 d-flex justify-content-between">
-            <span class="fontsize-20"><%= feature.name %>&emsp;</span>
-          </li>
-          <% if index % 4 == 0 %>
-            </ul>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="row">
       <div class="col-1"></div>
       <div class="col-10 px-0 mt-3 md-2 ml-4">

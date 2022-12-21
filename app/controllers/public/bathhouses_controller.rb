@@ -131,27 +131,33 @@ class Public::BathhousesController < ApplicationController
     @other = Feature.where(category: 'other')
     @building_facilities = Feature.where(category: 'building_facilities')
 
-    bathhouse_gender_man = @gender.find_by(sex: 0)
-    bathhouse_gender_woman = @gender.find_by(sex: 1)
-    bathhouse_gender_be_common = @gender.find_by(sex: 2)
+    @bathhouse_gender_man = @gender.find_by(sex: 0)
+    @bathhouse_gender_woman = @gender.find_by(sex: 1)
+    @bathhouse_gender_be_common = @gender.find_by(sex: 2)
 
-    gender_man_category = Category.where(gender_id: bathhouse_gender_man.id)
-    gender_woman_category= Category.where(gender_id: bathhouse_gender_woman.id)
-    gender_be_common_category = Category.where(gender_id: bathhouse_gender_be_common.id)
+    if @bathhouse_gender_man.present?
+      gender_man_category = Category.where(gender_id: @bathhouse_gender_man.id)
+      gender_man_bath_facilities = gender_man_category.where(feature_id: @bath_facilities.ids)
+      gender_man_sauna = gender_man_category.where(feature_id: @sauna.ids)
+      @bathhouse_man_bath_facilities = Feature.where(id: gender_man_bath_facilities.pluck(:feature_id))
+      @bathhouse_man_sauna = Feature.where(id: gender_man_sauna.pluck(:feature_id))
+    end
 
-    gender_man_bath_facilities = gender_man_category.where(feature_id: @bath_facilities.ids)
-    gender_man_sauna = gender_man_category.where(feature_id: @sauna.ids)
-    gender_woman_bath_facilities = gender_woman_category.where(feature_id: @bath_facilities.ids)
-    gender_woman_sauna = gender_woman_category.where(feature_id: @sauna.ids)
-    gender_other = gender_be_common_category.where(feature_id: @other.ids)
-    gender_building_facilities = gender_be_common_category.where(feature_id: @building_facilities.ids)
+    if @bathhouse_gender_woman.present?
+      gender_woman_category= Category.where(gender_id: @bathhouse_gender_woman.id)
+      gender_woman_bath_facilities = gender_woman_category.where(feature_id: @bath_facilities.ids)
+      gender_woman_sauna = gender_woman_category.where(feature_id: @sauna.ids)
+      @bathhouse_woman_bath_facilities = Feature.where(id: gender_woman_bath_facilities.pluck(:feature_id))
+      @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna.pluck(:feature_id))
+    end
 
-    @bathhouse_man_bath_facilities = Feature.where(id: gender_man_bath_facilities.pluck(:feature_id))
-    @bathhouse_man_sauna = Feature.where(id: gender_man_sauna.pluck(:feature_id))
-    @bathhouse_woman_bath_facilities = Feature.where(id: gender_woman_bath_facilities.pluck(:feature_id))
-    @bathhouse_woman_sauna = Feature.where(id: gender_woman_sauna.pluck(:feature_id))
-    @bathhouse_other = Feature.where(id: gender_other.pluck(:feature_id))
-    @bathhouse_building_facilities = Feature.where(id: gender_building_facilities.pluck(:feature_id))
+    if @bathhouse_gender_be_common.present?
+      gender_be_common_category = Category.where(gender_id: @bathhouse_gender_be_common.id)
+      gender_other = gender_be_common_category.where(feature_id: @other.ids)
+      gender_building_facilities = gender_be_common_category.where(feature_id: @building_facilities.ids)
+      @bathhouse_other = Feature.where(id: gender_other.pluck(:feature_id))
+      @bathhouse_building_facilities = Feature.where(id: gender_building_facilities.pluck(:feature_id))
+    end
 
     @review_satisfaction = Review.where(bathhouse_id: @bathhouse.id).where("satisfaction > ?", 0)
   end

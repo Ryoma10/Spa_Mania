@@ -169,3 +169,30 @@ if (document.URL.match(/review_new/)) {
     });
   });
 }
+
+if (document.URL.match(/users/)) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const createImageHTML_image = (blob) => {
+      const imageElement = document.getElementById('new-user-image');
+      const old_img = document.getElementById("old_img");
+      if (old_img){
+        old_img.remove();
+      }
+      const blobImage = document.createElement('img');
+      blobImage.setAttribute('id', 'new-img')
+      blobImage.setAttribute('class', 'new-img', 'user-img')
+      blobImage.setAttribute('src', blob);
+      imageElement.appendChild(blobImage);
+    };
+
+    document.getElementById('user_user_image').addEventListener('change', (e) =>{
+      const imageContent = document.getElementById('new-img');
+      if (imageContent){
+        imageContent.remove();
+      }
+      const file = e.target.files[0];
+      const blob = window.URL.createObjectURL(file);
+      createImageHTML_image(blob);
+    });
+  });
+}
